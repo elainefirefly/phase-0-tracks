@@ -21,3 +21,6 @@
 
 
 * What is a merge conflict?  
+*A merge conflict may arise when merging branches to the master. There are two possible reasons for a merge conflict to which the user must help the computer to resolve:*
+  * *Merging branches with competing revisions to a line of code on the same file*
+  * *Merging revisions to a file that was previously deleted by another branch or author*

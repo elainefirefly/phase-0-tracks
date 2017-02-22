@@ -1,4 +1,5 @@
 # Git Definitions
+Looking for squirrel... here's a :chestnut:  
 
 **Instructions: ** Define each of the following Git concepts.
 

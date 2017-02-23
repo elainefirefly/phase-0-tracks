@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Practice Form</title>
+  </head>
+  <body>
+    <form action="success.html" method="post">
+      <fieldset>
+        <div>
+          <label>Name: </label>
+          <input type="text" name="name">
+        </div>
+        <div>
+          <label>Email: </label>
+          <input type="email" name="email">
+        </div>
+        <div>
+          <label>Phone: </label>
+          <input type="tel" name="phone-number">
+        </div>
+      </fieldset>
+      <fieldset>
+        <div>
+          <label>Comments: </label>
+          <br>
+          <textarea name="comments" cols="50" rows="10" placeholder="Type your comments here..."></textarea>
+        </div>
+        <div>
+          <label>Share comments: </label>
+          <select name="social-platform">
+            <option value="facebook">Facebook</option>
+            <option value="twitter">Twitter</option>
+            <option value="instagram">Instagram</option>
+          </select>
+        </div>
+      </fieldset>
+      <button type="submit">Share</button>
+    </form>
+  </body>
+</html>

@@ -10,3 +10,18 @@
 .accomplishments {
   font-size: 0.8em;
 }
+
+.job:hover {
+	background-color: #f7c862;
+}
+
+#work-experience h2 {
+  color: #665931;
+}
+
+/* Exploratory */
+.featured:hover {
+  color: #a54d04;
+  font-weight: bold;
+  font-size:1em;
+}

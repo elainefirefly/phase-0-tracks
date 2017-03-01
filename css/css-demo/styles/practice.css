@@ -1,0 +1,12 @@
+.job {
+  background-color: #e9e5dc;
+  border-radius: 8px;
+  padding: 10px;
+  padding-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.accomplishments {
+  font-size: 0.8em;
+}

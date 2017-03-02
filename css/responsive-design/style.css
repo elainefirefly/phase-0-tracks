@@ -1,5 +1,5 @@
 body {
-  width: 960px;
+  max-width: 960px;
   display: inline-flex;
   vertical-align: text-top;
 }
@@ -21,10 +21,11 @@ cite {
 }
 
 #external-links {
-  width: 200px;
+  width: 20%;
+  min-width: 175px;
 }
 main {
-  width: 756px;
+  width: 80%;
 }
 
 /* you're welcome to edit the

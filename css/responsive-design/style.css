@@ -1,7 +1,10 @@
 body {
   max-width: 960px;
+  min-width: 400px;
   display: inline-flex;
   vertical-align: text-top;
+  margin: auto;
+  padding: 10%
 }
 
 blockquote {
@@ -46,10 +49,11 @@ figcaption {
   text-align: right;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 880px) {
   body {
     display: block;
-    vertical-align: text-top;
+    margin: auto;
+    padding: 8%;
   }
 }
 

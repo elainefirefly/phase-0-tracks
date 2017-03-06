@@ -27,9 +27,7 @@ emp_count.times {
   else
     result = nil
   end
-
   result = "Definitely a vampire" if name == "Drake Cula" || name == "Tu Fang"
-
   result ||= "Results inconclusive"
 
   # Release 4
@@ -42,6 +40,7 @@ emp_count.times {
       break
     end
   end
-
   puts "Vampire Test Result for #{name}: #{result}"
 }
+# Release 5
+puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."

@@ -32,5 +32,16 @@ emp_count.times {
 
   result ||= "Results inconclusive"
 
+  # Release 4
+  allergy = ""
+  until allergy == "done"
+    puts "Do you have allergies? Type each one and press enter. Type 'done', when list is complete. : "
+    allergy = gets.chomp
+    if allergy == "sunshine"
+      result = "Probably a vampire"
+      break
+    end
+  end
+
   puts "Vampire Test Result for #{name}: #{result}"
 }

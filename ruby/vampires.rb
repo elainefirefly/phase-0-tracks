@@ -42,5 +42,6 @@ emp_count.times {
   end
   puts "Vampire Test Result for #{name}: #{result}"
 }
+
 # Release 5
 puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."

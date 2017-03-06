@@ -19,3 +19,23 @@ Goal: Get robot from 5th floor to 12th floor:
       - Exit elevator
     - Otherwise:
       - Mumble: "Not my floor"
+
+
+Release 1 Heat up rice with microwave
+
+- Take out food from fridge
+- If food container is not microwave-safe:
+  - Transfer food to a microwave-safe bowl
+- Open microwave door
+- Put rice bowl inside the microwave
+- Place a food shield on top
+- Close the microwave door
+- Push quick minute button twice
+- Wait until the cooking time finishes and the microwave beeps
+- Get a pair of pot holders
+- Open the microwave door
+- Remove the food shield
+- Use pot holders to remove rice bowl out of the microwave
+- Put down the rice bowl on the counter
+- Close the microwave door
+- Serve rice bowl on the table

@@ -1,0 +1,21 @@
+Release 0
+Goal: Get robot from 5th floor to 12th floor:
+
+- Call elevator to 5th floor:
+  - If floor is higher than 5th floor:
+    - Push up button
+  - Otherwise:
+    - Push down button
+- Move in front of elevator door
+  - Wait until the door opens
+    - If door opens:
+     - Enter the elevator
+    - Otherwise:
+     - Call elevator to 5th floor -- again
+- Push button 12 on the control panel
+- For each floor on the floor indicator
+  - If door opens:
+    -If floor indicator 12 is lit:
+      - Exit elevator
+    - Otherwise:
+      - Mumble: "Not my floor"

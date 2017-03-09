@@ -43,3 +43,9 @@ def decrypt(password)
   end
   password
 end
+
+# Release 3
+puts "encrypt(\"abc\") = \"bcd\" : #{encrypt("abc") == "bcd"}"
+puts "encrypt(\"zed\") = \"afe\" : #{encrypt("zed") == "afe"}"
+puts "decrypt(\"bcd\") = \"abc\" : #{decrypt("bcd") == "abc"}"
+puts "decrypt(\"afe\") = \"zed\" : #{decrypt("afe") == "zed"}"

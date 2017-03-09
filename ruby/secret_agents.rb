@@ -1,3 +1,4 @@
+# Release 2
 # Encrypt
 # Iterate through each letter using a while loop
 # Within the while loop, if the character is 'z', change it to 'a';
@@ -44,14 +45,32 @@ def decrypt(password)
   password
 end
 
+=begin
 # Release 3
 puts "encrypt(\"abc\") = \"bcd\" : #{encrypt("abc") == "bcd"}"
 puts "encrypt(\"zed\") = \"afe\" : #{encrypt("zed") == "afe"}"
 puts "decrypt(\"bcd\") = \"abc\" : #{decrypt("bcd") == "abc"}"
 puts "decrypt(\"afe\") = \"zed\" : #{decrypt("afe") == "zed"}"
-
 # Release 4
 puts "decrypt(encrypt(\"swordfish\") = \"swordfish\" : #{decrypt(encrypt("swordfish")) == "swordfish"}"
 # Note to future agents: This nested method call works because the encrypt method's return type is a string,
 # and the decrypt method accepts a string as a parameter. The computer will process the encrypt method first,
 # the resulting value will then be used as the argument for the decrypt method.
+=end
+
+# Release 5
+# Display a user prompt asking the agent whether to encrypt or decrypt password
+puts "How should we process your password? Type 'e' for encrypt or 'd' for decrypt: "
+# Store the agent's response
+choice = gets.chomp
+# Ask the agent for the password
+puts "Enter your password: "
+# Store the password
+password = gets.chomp
+# Process password based on the agent's choice
+# Display the processed password
+if choice == 'e'
+  puts "Your encrypted password: #{encrypt(password)}"
+else
+  puts "Your decrypted password: #{decrypt(password)}"
+end

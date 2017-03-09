@@ -12,7 +12,7 @@ def encrypt(password)
     if password[i] == "z"
       password[i] = "a"
     elsif password[i] == " "
-      next
+      password[i] = " "
     else
       password[i] = password[i].next!
     end
@@ -35,7 +35,7 @@ def decrypt(password)
   i = 0
   while i < password.length
     if password[i] == " "
-      next
+      password[i] == " "
     else
       idx = alphabet.index(password[i]) - 1
       password[i] = alphabet[idx]

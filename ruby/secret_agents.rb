@@ -49,3 +49,9 @@ puts "encrypt(\"abc\") = \"bcd\" : #{encrypt("abc") == "bcd"}"
 puts "encrypt(\"zed\") = \"afe\" : #{encrypt("zed") == "afe"}"
 puts "decrypt(\"bcd\") = \"abc\" : #{decrypt("bcd") == "abc"}"
 puts "decrypt(\"afe\") = \"zed\" : #{decrypt("afe") == "zed"}"
+
+# Release 4
+puts "decrypt(encrypt(\"swordfish\") = \"swordfish\" : #{decrypt(encrypt("swordfish")) == "swordfish"}"
+# Note to future agents: This nested method call works because the encrypt method's return type is a string,
+# and the decrypt method accepts a string as a parameter. The computer will process the encrypt method first,
+# the resulting value will then be used as the argument for the decrypt method.

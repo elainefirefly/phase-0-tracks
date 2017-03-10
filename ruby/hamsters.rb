@@ -22,14 +22,14 @@ hamster_age = nil if hamster_age == ""
 puts "Hamster Bio"
 puts "Hamster name : #{hamster_name}"
 if hamster_volume >= 5
-	puts "Noise level : Jolly and cheerful and can keep you up all night"
+  puts "Noise level : Jolly and cheerful and can keep you up all night"
 else
-	puts "Noise level: Quiet like a hamster ninja"
+  puts "Noise level: Quiet like a hamster ninja"
 end
 puts "Hamster' Fur color: #{hamster_color}"
 if hamster_behave
-	puts "Temperament: Sweet and lovely (adoptable!)"
+  puts "Temperament: Sweet and lovely (adoptable!)"
 else
-	puts "Temperament: Will bounce off the wall (adopt at your own discretion!)"
+  puts "Temperament: Will bounce off the wall (adopt at your own discretion!)"
 end
 puts "Hamster's estimated age : #{hamster_age}"

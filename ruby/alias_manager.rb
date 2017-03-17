@@ -17,53 +17,53 @@ Pseudocode:
 =end
 
 def get_real_name(agents)
-	puts "Type agent's name and press enter:"
-	real_name = gets.chomp
-	while real_name != "done" && real_name.strip != ""
-		agents[real_name] = generate_fake_name(real_name)
-		puts "Alias generated: #{agents[real_name]}"
-		puts "Type another name or type 'done' to exit generator:"
-		real_name = gets.chomp
-	end
+  puts "Type agent's name and press enter:"
+  real_name = gets.chomp
+  while real_name != "done" && real_name.strip != ""
+    agents[real_name] = generate_fake_name(real_name)
+    puts "Alias generated: #{agents[real_name]}"
+    puts "Type another name or type 'done' to exit generator:"
+    real_name = gets.chomp
+  end
 end
 
 def generate_fake_name(real_name)
-	real_name.split.map { |name| modify_name(name) }.reverse.join ' '
+  real_name.split.map { |name| modify_name(name) }.reverse.join ' '
 end
 
 def modify_name(name)
-	fake_name = ""
-	name.chars do |letter|
-		if letter =~ /[^a-z]/i
-			fake_name << letter
-		elsif letter =~ /[aeiou]/i
-			fake_name << next_vowel(letter)
-		else
-			fake_name << next_consonant(letter)
-		end
-	end
-	fake_name
+  fake_name = ""
+  name.chars do |letter|
+    if letter =~ /[^a-z]/i
+      fake_name << letter
+    elsif letter =~ /[aeiou]/i
+      fake_name << next_vowel(letter)
+    else
+      fake_name << next_consonant(letter)
+    end
+  end
+  fake_name
 end
 
 def next_vowel(letter)
-	vowels = %w{a e i o u}
-	next_index = (vowels.index(letter.downcase) + 1) % 5
-	letter == letter.upcase ? vowels[next_index].upcase : vowels[next_index]
+  vowels = %w{a e i o u}
+  next_index = (vowels.index(letter.downcase) + 1) % 5
+  letter == letter.upcase ? vowels[next_index].upcase : vowels[next_index]
 end
 
 def next_consonant(letter)
-	consonants = ("b".."z").select { |c| c =~ /[^aeiou]/ }
-	next_index = (consonants.index(letter.downcase) + 1) % 21
-	letter == letter.upcase ? consonants[next_index].upcase : consonants[next_index]
+  consonants = ("b".."z").select { |c| c =~ /[^aeiou]/ }
+  next_index = (consonants.index(letter.downcase) + 1) % 21
+  letter == letter.upcase ? consonants[next_index].upcase : consonants[next_index]
 end
 
 def print_data(data)
-	puts
-	puts "  AGENTS & ALIASES  ".center(50, "=")
-	puts
-	data.each { |real,fake| puts "Agent #{real} is also known as #{fake}." }
-	puts
-	puts "".center(50, "=")
+  puts
+  puts "  AGENTS & ALIASES  ".center(50, "=")
+  puts
+  data.each { |real,fake| puts "Agent #{real} is also known as #{fake}." }
+  puts
+  puts "".center(50, "=")
 end
 
 # main starts here

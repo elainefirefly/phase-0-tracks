@@ -3,7 +3,6 @@ class Santa
   attr_accessor :gender
 
   def initialize(gender,ethnicity)
-    puts "Initializing Santa instance..."
     @gender = gender
     @ethnicity = ethnicity
     @reindeer_ranking = %w{Rudolph Dasher Dancer Prancer Vixen Comet Cupid Donner Blitzen}
@@ -39,11 +38,10 @@ puts "Santa List:"
 santa_fam.each_with_index { |santa,idx| puts "#{idx + 1}. A #{santa.gender} #{santa.ethnicity} santa is born." }
 
 # release 2 driver code:
-#assign age to each santa
 santa_fam.each do |santa|
   #due to some mystical cookie maturity booster
   rand(99).times { santa.celebrate_birthday }
-  #queers are undecided, so they will likely decide eventually
+  #queers are undecided, so they will likely decide at the age of maturity
   santa.gender = genders[rand(6)] if santa.gender == "queer"
   #sudden growth spurt can cause dangerous mood swings...
   if santa.age > 60
@@ -56,6 +54,18 @@ end
 puts "Revised Santa List:"
 santa_fam.each_with_index { |santa,idx| puts "#{idx + 1}. A #{santa.gender} #{santa.ethnicity} santa turned #{santa.age} years old." }
 
+#release 4 driver code:
+puts "=".center(50, "=")
+puts
+puts "A HUNDRED MORE SANTAS WHO ARE HONEST WITH THEIR AGE AND OPINION"
+puts
+puts "=".center(50, "=")
+100.times do |n|
+   santa = Santa.new(genders[rand(7)], ethnicity[rand(8)])
+   rand(141).times { santa.celebrate_birthday }
+   santa.get_mad_at(santa.reindeer_ranking[rand(7)]) if santa.age > 60
+   puts "#{n+1}. A #{santa.age}-year old #{santa.gender} #{santa.ethnicity} santa ranks #{santa.reindeer_ranking[-1]} last."
+end
 
 
 =begin

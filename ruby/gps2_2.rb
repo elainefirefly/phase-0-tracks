@@ -21,7 +21,6 @@ def add_item(grocery_list,new_item,quantity=1)
   grocery_list[new_item] = quantity
 end
 
-
 # Method to remove an item from the list
 # input: list and item name
 # steps: find the item in the list and delete it
@@ -53,7 +52,7 @@ def print_list(grocery_list)
   puts "=".center(50, "=")
 end
 
-#driver code
+# driver code
 grocery_list = create_list("apples milk cereal")
 print_list(grocery_list)
 add_item(grocery_list, "lemonade", 2)
@@ -65,3 +64,28 @@ remove_item(grocery_list, "lemonade")
 print_list(grocery_list)
 update_quantity(grocery_list, "ice cream", 1)
 print_list(grocery_list)
+
+
+=begin
+Release 4: Reflection
+What did you learn about pseudocode from working on this challenge?
+I learned that it will be easier for me to tackle syntax if I have
+focused on the logic first, and that's what pseudocode is for.
+
+What are the tradeoffs of using arrays and hashes for this challenge?
+While arrays and hashes make it possible to create complex data structure, it also complicates the code, and the developer must be comfortable using them to be able to access data properly. Luckily,
+this tradeoff is much bearable with Ruby than any other language I have
+encountered in my learning.
+
+What does a method return?
+A method returns the result of the last statement that was evaluated
+
+What kind of things can you pass into methods as arguments?
+objects and blocks
+
+How can you pass information between methods?
+using parameters/arguments
+
+What concepts were solidified in this challenge, and what concepts are still confusing?
+I'm pretty familiar with Ruby and methods, so I think it was pretty solid already.  However, I did get practice pseudocoding, which I don't usually do because I'm used to the Ruby syntax already.
+=end

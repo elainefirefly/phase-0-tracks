@@ -27,6 +27,22 @@ class Puppy
   end
 end
 
+# release 2
+class Kitten
+  def initialize
+ 	  puts "New kitten coming..."
+  end
+
+  def follow_yarn(yard)
+    puts "Runs #{yard} yards"
+  end
+
+  def climb
+    furniture = ["table", "chair", "person", "bookcase"]
+    puts "climbs up #{furniture.sample}"
+  end
+end
+
 
 # driver code
 cinnamon = Puppy.new
@@ -35,3 +51,11 @@ cinnamon.speak(5)
 cinnamon.roll_over
 puts cinnamon.dog_years(1)
 cinnamon.lick_face("Jojo")
+
+kittenz_den = []
+50.times {kittenz_den << Kitten.new}
+kittenz_den.each_with_index do |kitten,idx|
+  puts "This is kitten number #{idx + 1}"
+  kitten.follow_yarn(rand(1..100))
+  kitten.climb
+end

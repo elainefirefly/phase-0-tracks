@@ -1,5 +1,10 @@
 # release 0
 class Puppy
+  #release 1
+  def initialize
+    puts "Initializing new puppy instance..."
+  end
+
   def fetch(toy)
     puts "I brought back the #{toy}!"
     toy

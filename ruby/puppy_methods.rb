@@ -30,7 +30,7 @@ end
 # release 2
 class Kitten
   def initialize
- 	  puts "New kitten coming..."
+    puts "New kitten coming..."
   end
 
   def follow_yarn(yard)

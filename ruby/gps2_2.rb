@@ -7,8 +7,8 @@
 # output: fill array as hash keys with quantities as the value
 
 def create_list(grocery_items)
-  grocery_list = Hash.new(1)
-  items.split.each { |item| grocery_list[item] }
+  grocery_list = Hash.new(0)
+  grocery_items.split.each { |item| grocery_list[item] += 1 }
   grocery_list
 end
 

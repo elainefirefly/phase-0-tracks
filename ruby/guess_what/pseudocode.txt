@@ -1,0 +1,107 @@
+Controller: (For the user)
+- Create a flag to validate a phrase using a while loop, set it to false
+  WHILE phrase validation returns false DO
+    - Prompt the game master to enter the phrase
+    - Initialize an instance of the game with the INITIALIZE method
+    - Call VALIDATE PHRASE method and assign the return to the validation flag
+  END WHILE
+- Get the puzzle's initial state by calling SHOW PUZZLE and turning the array into a string format
+- Display the puzzle with string formatting
+- Get the guess limit
+- Create a guessed correctly flag
+- Create a loop
+  REPEAT using the guess limit value DO
+    - Prompt the guesser for a letter
+    - Create a valid letter flag for a while loop
+      WHILE the valid letter flag is false DO
+        - Pass the letter to the game object to CHECK LETTER and capture the boolean returned using the valid letter flag
+      END WHILE
+    - Check the letter if it's in the phrase by calling GET INDEXES
+    - Pass the indexes to SHOW PUZZLE
+    - Prompt the guesser to guess the phrase
+    - Call GUESSED RIGHT? and pass the guesser's response to the guessed correctly flag
+    - IF guessed correctly THEN
+        exit the loop early
+  END REPEAT
+-
+  IF guessed correctly
+  OR GUESSER WON? method returns true THEN
+    Display a congratulatory note
+  ELSE
+    Display a taunting note
+  END IF
+-------------------------------------------------------
+
+Game Processor:
+Method: INITIALIZE
+Input: phrase
+Steps:
+  - Store the phrase input to the phrase ivar
+  - Create and set the game_over ivar to false
+  - Create and set the guess limit
+  - Create and set guess count
+  - Create guesses array and set to empty
+Output: GuessWhat object
+
+Method: VALIDATE PHRASE
+Input: none
+Steps:
+  - Search the phrase ivar for invalid letters
+Output: boolean
+
+Method: SHOW PUZZLE
+Input: character indexes array(default empty), character
+Steps:
+  IF character indexes array is empty THEN
+    Create letter_array from the phrase ivar
+    Replace the letters with "_"
+    Replace the spaces with "|"
+  ELSE
+    FOR each index in character indexes array
+      Access element in letter_array and replace "_" with character
+    END FOR
+  END IF
+Output: letter_array
+
+Method: GUESSER WON?
+Input: None
+Steps:
+  IF letter array does not have "_" AND
+  number of guesses is less than guess limit THEN
+    RETURN true
+  ELSE
+    RETURN false
+  END IF
+Output: boolean
+
+Method: CHECK LETTER
+Input: letter
+Steps:
+  - IF letter was already in the guesses array OR
+    letter is not a valid character THEN
+      RETURN false
+    ELSE
+      RETURN true
+    END IF
+Output: boolean
+
+Method: GET INDEXES
+Input: letter
+Steps:
+  - Create an index array
+  - FOR EACH with INDEX DO
+      IF  letter match the character on index THEN
+        Add index to the array
+      END IF
+    END EACH
+Output: index array 
+
+Method: GUESSED RIGHT?
+Input: response
+Steps:
+  - IF response is equal the ivar phrase THEN
+      RETURN true
+    ELSE
+      RETURN false
+    END IF
+Output: boolean

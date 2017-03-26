@@ -16,14 +16,13 @@ describe GuessWhat do
       expect(game.count).to eq 0
     end
 
-    it "creates a list for guesses and sets it to empty" do
-      expect(game.guess_list).to be_empty
+    it "creates a log for guesses and sets it to empty" do
+      expect(game.guess_history).to be_empty
     end
 
     it "flags if guesser guessed the phrase correctly" do
-      expect(game.guess_list).to be_empty
+      expect(game.guessed).to be false
     end
-
   end
 
   describe "can validate an input string" do
@@ -46,7 +45,27 @@ describe GuessWhat do
     end
   end
 
-  it "can tell if the game is over" do
-    expect(game.game_over?).to be false
+  describe "can process player input and will provide the result" do
+    it "determines if the game is over" do
+      expect(game.game_over?).to be false
+    end
+    describe "validates the guessed letter" do
+      context "when a valid letter is submitted" do
+        it "updates the guess count" do
+          game.valid_letter?("M")
+          game.valid_letter?("n")
+          expect(game.count).to eq 2
+        end
+
+        it "adds the letter to the guess history" do
+          game.valid_letter?("M")
+          expect(game.guess_history.include?("m")).to be true
+        end
+
+        it "confirms that the letter is valid" do
+          expect(game.valid_letter?("Q")).to be true
+        end
+      end
+    end
   end
 end

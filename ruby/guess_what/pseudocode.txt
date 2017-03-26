@@ -7,10 +7,10 @@ Controller: (For the user)
   END WHILE
 - Get the puzzle's initial state by calling SHOW PUZZLE and turning the array into a string format
 - Display the puzzle with string formatting
-- Get the guess limit
+- Get status by calling GAME OVER? method
 - Create a guessed correctly flag
 - Create a loop
-  REPEAT using the guess limit value DO
+  REPEAT until GAME OVER? flag is true DO
     - Prompt the guesser for a letter
     - Create a valid letter flag for a while loop
       WHILE the valid letter flag is false DO
@@ -63,6 +63,12 @@ Steps:
   END IF
 Output: letter_array
 
+Method: UPDATE GUESS COUNT
+Input: none
+Steps:
+  - Increase guess count
+Output: boolean
+
 Method: GUESSER WON?
 Input: None
 Steps:
@@ -81,6 +87,7 @@ Steps:
     letter is not a valid character THEN
       RETURN false
     ELSE
+      Call UPDATE GUESS COUNT
       RETURN true
     END IF
 Output: boolean
@@ -90,16 +97,26 @@ Input: letter
 Steps:
   - Create an index array
   - FOR EACH with INDEX DO
-      IF  letter match the character on index THEN
+      IF letter match the character on index THEN
         Add index to the array
       END IF
     END EACH
-Output: index array 
+Output: index array
 
 Method: GUESSED RIGHT?
 Input: response
 Steps:
   - IF response is equal the ivar phrase THEN
+      RETURN true
+    ELSE
+      RETURN false
+    END IF
+Output: boolean
+
+Method: GAME OVER?
+Input: none
+Steps:
+  - IF guess count is equal guess limit THEN
       RETURN true
     ELSE
       RETURN false

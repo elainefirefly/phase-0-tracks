@@ -8,4 +8,8 @@ class GuessWhat
     @count = 0
     @guesses = []
   end
+
+  def valid?
+    @phrase.scan(/[^a-zA-Z\s]/).empty?
+  end
 end

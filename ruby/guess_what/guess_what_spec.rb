@@ -20,4 +20,18 @@ describe GuessWhat do
       expect(game.guesses).to be_empty
     end
   end
+
+  describe "can validate an input string" do
+    context "when given a valid input string" do
+      it "accepts the valid phrase" do
+        expect(GuessWhat.new("valid phrase").valid?).to be true
+      end
+    end
+
+    context "when given an invalid input string" do
+      it "rejects the invalid phrase" do
+        expect(GuessWhat.new("inval!d phr@se").valid?).to be false
+      end
+    end
+  end
 end

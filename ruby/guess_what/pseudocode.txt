@@ -61,7 +61,23 @@ Steps:
       Access element in letter_array and replace "_" with character
     END FOR
   END IF
-Output: letter_array
+  Transform letter_array into a formatted puzzle string
+Output: puzzle_string
+
+Method: UPDATE LETTER ARRAY
+Input: indexes
+Steps:
+  IF character indexes array is empty THEN
+    Create letter_array from the phrase ivar
+    Replace the letters with "_"
+    Replace the spaces with "|"
+  ELSE
+    FOR each index in character indexes array
+      Access element in letter_array and replace "_" with character
+    END FOR
+  END IF
+  Transform letter_array into a formatted puzzle string
+Output: puzzle_string
 
 Method: UPDATE GUESS COUNT
 Input: none

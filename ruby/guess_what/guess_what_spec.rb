@@ -34,4 +34,10 @@ describe GuessWhat do
       end
     end
   end
+
+  describe "can transform a phrase into a puzzle" do
+    it "can hide all the letters" do
+      expect(game.show_puzzle).to eq "_ _ _ _ _ | _ _ _ _ _"
+    end
+  end
 end

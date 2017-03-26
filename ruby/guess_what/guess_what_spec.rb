@@ -17,8 +17,13 @@ describe GuessWhat do
     end
 
     it "creates a list for guesses and sets it to empty" do
-      expect(game.guesses).to be_empty
+      expect(game.guess_list).to be_empty
     end
+
+    it "flags if guesser guessed the phrase correctly" do
+      expect(game.guess_list).to be_empty
+    end
+
   end
 
   describe "can validate an input string" do
@@ -39,5 +44,9 @@ describe GuessWhat do
     it "can hide all the letters" do
       expect(game.show_puzzle).to eq "_ _ _ _ _ | _ _ _ _ _"
     end
+  end
+
+  it "can tell if the game is over" do
+    expect(game.game_over?).to be false
   end
 end

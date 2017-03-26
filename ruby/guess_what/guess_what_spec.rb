@@ -8,20 +8,16 @@ describe GuessWhat do
       expect(game.phrase).to eq "hello world"
     end
 
-    it "sets the game in progress" do
-      expect(game.game_over).to be false
-    end
-
     it "sets when the game will end" do
-      expect(game.guess_limit).to eq 10
+      expect(game.limit).to eq 10
     end
 
     it "sets the number of guesses to 0" do
-      expect(game.guess_count).to eq 0
+      expect(game.count).to eq 0
     end
 
     it "creates a list for guesses and sets it to empty" do
-      expect(game.guess_list).to be_empty
+      expect(game.guesses).to be_empty
     end
   end
 end

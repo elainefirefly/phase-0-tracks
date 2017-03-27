@@ -37,4 +37,10 @@ class GuessWhat
     end
     false
   end
+
+  def match_indexes(letter)
+    idx_array = []
+    @phrase.split("").each_with_index { |character,idx| idx_array << idx if character.downcase == letter}
+    idx_array
+  end
 end

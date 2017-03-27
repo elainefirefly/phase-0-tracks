@@ -15,7 +15,7 @@ class GuessWhat
     @phrase.scan(/[^a-z\s]/i).empty?
   end
 
-  def show_puzzle(indexes=[], letter="_")
+  def construct_puzzle(indexes=[], letter="_")
     if indexes.empty? && letter == "_"
         phrase_hide = @phrase.gsub(/[a-z]/i, "_")
         phrase_hide.gsub!(" ", "|")

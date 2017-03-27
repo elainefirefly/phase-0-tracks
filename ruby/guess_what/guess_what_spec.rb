@@ -1,7 +1,7 @@
 require_relative "guess_what"
 
 describe GuessWhat do
-  let(:game) { GuessWhat.new("hello world")}
+  let(:game) { GuessWhat.new("Hello world")}
 
   describe "can be initialized with an input string and start the game" do
     it "stores the phrase given on initialization" do
@@ -41,7 +41,7 @@ describe GuessWhat do
 
   describe "can transform a phrase into a puzzle" do
     it "can hide all the letters" do
-      expect(game.show_puzzle).to eq "_ _ _ _ _ | _ _ _ _ _"
+      expect(game.construct_puzzle).to eq "_ _ _ _ _ | _ _ _ _ _"
     end
   end
 
@@ -87,10 +87,20 @@ describe GuessWhat do
       end
 
       it "updates the puzzle display" do
-        game.show_puzzle
-        game.show_puzzle(game.match_indexes("l"), "l")
-        game.show_puzzle(game.match_indexes("b"), "b")
-        expect(game.show_puzzle(game.match_indexes("w"), "w")).to eq "_ _ l l _ | w _ _ l _"
+        game.construct_puzzle
+        game.construct_puzzle(game.match_indexes("l"), "l")
+        game.construct_puzzle(game.match_indexes("b"), "b")
+        expect(game.construct_puzzle(game.match_indexes("w"), "w")).to eq "_ _ l l _ | w _ _ l _"
+      end
+
+      it "confirms if the player guessed the phrase correctly" do
+        game.check_guess("hello World")
+        expect(game.guessed).to be true
+      end
+
+      it "rejects if the player guessed the phrase incorrectly" do
+        game.check_guess("holly whale")
+        expect(game.guessed).to be false
       end
     end
   end

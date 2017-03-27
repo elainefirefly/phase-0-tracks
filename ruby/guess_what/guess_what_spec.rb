@@ -47,7 +47,7 @@ describe GuessWhat do
 
   describe "can process player input and provides the result" do
     it "determines if the game is over" do
-      expect(game.game_over?).to be false
+      expect(game.over?).to be false
     end
     describe "validates the guessed letter" do
       context "when a valid letter is submitted" do
@@ -58,8 +58,8 @@ describe GuessWhat do
         end
 
         it "adds the letter to the guess history" do
-          game.valid_letter?("M")
-          expect(game.guess_history.include?("m")).to be true
+          game.valid_letter?("m")
+          expect(game.guess_history.include?("M")).to be true
         end
 
         it "confirms that the letter is valid" do
@@ -90,7 +90,7 @@ describe GuessWhat do
         game.construct_puzzle
         game.construct_puzzle(game.match_indexes("l"), "l")
         game.construct_puzzle(game.match_indexes("b"), "b")
-        expect(game.construct_puzzle(game.match_indexes("w"), "w")).to eq "_ _ l l _ | w _ _ l _"
+        expect(game.construct_puzzle(game.match_indexes("w"), "w")).to eq "_ _ L L _ | W _ _ L _"
       end
 
       it "confirms if the player guessed the phrase correctly" do
@@ -102,6 +102,37 @@ describe GuessWhat do
         game.check_guess("holly whale")
         expect(game.guessed).to be false
       end
+    end
+  end
+  describe "determines if the guesser won the game" do
+    it "says win if player guessed the phrase before the limit number of guesses" do
+      game.check_guess("hello world")
+      expect(game.won?).to be true
+    end
+
+    it "says win if all letters were guessed before the limit number of guesses" do
+      game.construct_puzzle
+      game.construct_puzzle(game.match_indexes("h"), "h")
+      game.construct_puzzle(game.match_indexes("e"), "e")
+      game.construct_puzzle(game.match_indexes("l"), "l")
+      game.construct_puzzle(game.match_indexes("o"), "o")
+      game.construct_puzzle(game.match_indexes("w"), "w")
+      game.construct_puzzle(game.match_indexes("r"), "r")
+      game.construct_puzzle(game.match_indexes("d"), "d")
+      expect(game.won?).to be true
+    end
+    
+    it "says lose if unable to guess and exceeded limit" do
+      game.construct_puzzle
+      game.construct_puzzle(game.match_indexes("h"), "h")
+      game.construct_puzzle(game.match_indexes("e"), "e")
+      game.construct_puzzle(game.match_indexes("n"), "n")
+      game.construct_puzzle(game.match_indexes("o"), "o")
+      game.construct_puzzle(game.match_indexes("q"), "q")
+      game.construct_puzzle(game.match_indexes("r"), "r")
+      game.construct_puzzle(game.match_indexes("s"), "s")
+      game.construct_puzzle(game.match_indexes("m"), "m")
+      expect(game.won?).to be false
     end
   end
 end

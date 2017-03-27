@@ -5,7 +5,7 @@ describe GuessWhat do
 
   describe "can be initialized with an input string and start the game" do
     it "stores the phrase given on initialization" do
-      expect(game.phrase).to eq "hello world"
+      expect(game.phrase).to eq "Hello world"
     end
 
     it "sets when the game will end" do
@@ -45,7 +45,7 @@ describe GuessWhat do
     end
   end
 
-  describe "can process player input and will provide the result" do
+  describe "can process player input and provides the result" do
     it "determines if the game is over" do
       expect(game.game_over?).to be false
     end

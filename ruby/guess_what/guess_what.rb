@@ -45,4 +45,8 @@ class GuessWhat
     @phrase.split('').each_with_index { |character,idx| idx_array << idx if character.downcase == letter }
     idx_array
   end
+
+  def check_guess(guess_phrase)
+    @guessed = @phrase.downcase == guess_phrase.downcase
+  end
 end

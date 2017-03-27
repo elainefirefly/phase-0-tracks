@@ -81,9 +81,16 @@ describe GuessWhat do
       it "it provides the position of the letter in the puzzle" do
         expect(game.match_indexes("l")).to eq [2,3,9]
       end
-      
+
       it "advises if the letter matched" do
         expect(game.match_indexes("a")).to eq []
+      end
+
+      it "updates the puzzle display" do
+        game.show_puzzle
+        game.show_puzzle(game.match_indexes("l"), "l")
+        game.show_puzzle(game.match_indexes("b"), "b")
+        expect(game.show_puzzle(game.match_indexes("w"), "w")).to eq "_ _ l l _ | w _ _ l _"
       end
     end
   end

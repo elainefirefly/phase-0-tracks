@@ -17,7 +17,7 @@ Controller: (For the user)
       END WHILE
     - Check the letter if it's in the phrase by calling GET INDEXES
     - Pass the indexes to SHOW PUZZLE
-    - Prompt the guesser to guess the phrase
+    - Prompt the guesser to guess the phrase if the letter matched
     - Call GUESSED RIGHT? and pass the guesser's response to the guessed correctly flag
     - IF guessed correctly THEN
         exit the loop early

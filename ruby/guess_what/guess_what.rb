@@ -20,6 +20,8 @@ class GuessWhat
         phrase_hide = @phrase.gsub(/[a-z]/i, "_")
         phrase_hide.gsub!(" ", "|")
         @puzzle_bits = phrase_hide.split ""
+    else
+      indexes.each { |idx| @puzzle_bits[idx] = letter }
     end
     @puzzle_bits.join " "
   end
@@ -40,7 +42,7 @@ class GuessWhat
 
   def match_indexes(letter)
     idx_array = []
-    @phrase.split("").each_with_index { |character,idx| idx_array << idx if character.downcase == letter}
+    @phrase.split('').each_with_index { |character,idx| idx_array << idx if character.downcase == letter }
     idx_array
   end
 end

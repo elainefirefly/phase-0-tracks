@@ -76,5 +76,15 @@ describe GuessWhat do
         end
       end
     end
+
+    describe "confirms if the letter is in the puzzle" do
+      it "it provides the position of the letter in the puzzle" do
+        expect(game.match_indexes("l")).to eq [2,3,9]
+      end
+      
+      it "advises if the letter matched" do
+        expect(game.match_indexes("a")).to eq []
+      end
+    end
   end
 end

@@ -66,6 +66,15 @@ describe GuessWhat do
           expect(game.valid_letter?("Q")).to be true
         end
       end
+
+      context "when an invalid letter is submitted" do
+        it "rejects if letter is not equal 1 character" do
+          expect(game.valid_letter?("8e")).to be false
+        end
+        it "rejects if letter is not a letter in the alphabet" do
+          expect(game.valid_letter?("$")).to be false
+        end
+      end
     end
   end
 end

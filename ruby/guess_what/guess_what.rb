@@ -30,7 +30,7 @@ class GuessWhat
   end
 
   def valid_letter?(letter)
-    if letter =~ /[a-z]/i && !@guess_history.include?(letter.downcase)
+    if letter.length == 1 && letter =~ /[a-z]/i && !@guess_history.include?(letter.downcase)
       @count += 1
       @guess_history << letter.downcase
       return true

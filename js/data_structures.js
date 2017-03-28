@@ -27,8 +27,12 @@ var carTwo = new Car("Ford", "Pinto", 1970, false);
 var carThree = new Car("Shelby", "Cobra", 1965, true);
 var carFour = new Car("Bugatti", "Veyron", 2011, false);
 
+// release 3
 var carArray = [carOne, carTwo, carThree, carFour];
 
 for (var i = 0; i < carArray.length; i++) {
-  console.log(carArray[i]);
+  for (var key in carArray[i]) {
+    console.log("The key is " + key)
+    console.log("The value is " + carArray[i][key])
+  }
 }

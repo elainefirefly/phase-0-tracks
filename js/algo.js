@@ -16,7 +16,7 @@ END FUNCTION
 function findLongestPhrase(wordArray) {
 	var longestPhrase = "";
 	for (let i = 0; i < wordArray.length; i++) {
-		if (longestPhrase.length < wordArray[i].length) {
+		if (typeof wordArray[i] === "string" && longestPhrase.length < wordArray[i].length) {
 			longestPhrase = wordArray[i];
 		}
 	}
@@ -26,3 +26,5 @@ function findLongestPhrase(wordArray) {
 // driver code:
 // release 0
 console.log(findLongestPhrase(["long phrase", "longest phrase", "longer phrase"]));
+console.log(findLongestPhrase(["carpe diem", "in vino veritas", "c'es la vie", "Deo favente"]));
+console.log(findLongestPhrase(["DRY-ness", null]));

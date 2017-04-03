@@ -1,5 +1,6 @@
 // release 0
 /*
+IMPORTANT: This will return the first longest phrase if there are multiple of the same length
 pseudocode:
 Define a function called that takes an array of strings as a parameter
 FUNCTION
@@ -14,13 +15,13 @@ END FUNCTION
 */
 
 function findLongestPhrase(wordArray) {
-	var longestPhrase = "";
-	for (let i = 0; i < wordArray.length; i++) {
-		if (typeof wordArray[i] === "string" && longestPhrase.length < wordArray[i].length) {
-			longestPhrase = wordArray[i];
-		}
-	}
-	return longestPhrase;
+  var longestPhrase = "";
+  for (let i = 0; i < wordArray.length; i++) {
+    if (typeof wordArray[i] === "string" && longestPhrase.length < wordArray[i].length) {
+      longestPhrase = wordArray[i];
+    }
+  }
+  return longestPhrase;
 }
 
 // release 1
@@ -71,14 +72,14 @@ END FUNCTION
 */
 
 function generateRandomPhrase(phraseArray, numberOfPhrase) {
-	for (let i = 0; i < numberOfPhrase; i++) {
-		phrase = [];
-		numOfWords = Math.floor(Math.random() * 5) + 1;
-		for (let j = 0; j < numOfWords; j++) {
-			phrase.push(generateWord());
-		}
-		phraseArray.push(phrase.join(" "));
-	}
+  for (let i = 0; i < numberOfPhrase; i++) {
+    phrase = [];
+    numOfWords = Math.floor(Math.random() * 5) + 1;
+    for (let j = 0; j < numOfWords; j++) {
+      phrase.push(generateWord());
+    }
+    phraseArray.push(phrase.join(" "));
+  }
 }
 
 /*
@@ -98,15 +99,15 @@ END FUNCTION
 */
 
 function generateWord() {
-	wordLength = Math.floor(Math.random() * 10 + 1);
-	var min = "a".charCodeAt();
-	var max = "z".charCodeAt();
-	var diff = max - min;
-	var word = "";
-	for (let i = 0; i < wordLength; i++) {
-		word += String.fromCharCode(Math.floor(Math.random(min,max) * diff) + min);
-	}
-	return word;
+  wordLength = Math.floor(Math.random() * 10 + 1);
+  var min = "a".charCodeAt();
+  var max = "z".charCodeAt();
+  var diff = max - min;
+  var word = "";
+  for (let i = 0; i < wordLength; i++) {
+    word += String.fromCharCode(Math.floor(Math.random(min,max) * diff) + min);
+  }
+  return word;
 }
 
 /*
@@ -121,10 +122,10 @@ END FUNCTION
 */
 
 function printGeneratedPhrases(phrases) {
-	console.log("\n\nThe phrases generated are:")
-	for (let phrase of phrases) {
-		console.log(phrase);
-	}
+  console.log("\n\nThe phrases generated are:")
+  for (let phrase of phrases) {
+    console.log(phrase);
+  }
 }
 
 // driver code:
@@ -145,8 +146,8 @@ console.log(findIdenticalPair(kingstonBoot, saddleBag));
 
 // release 2
 for (let i = 0; i < 10; i++) {
-	var phraseArray = [];
-	generateRandomPhrase(phraseArray, Math.floor(Math.random() * 10) + 1);
-	printGeneratedPhrases(phraseArray);
-	console.log("\nLongest phrase: " + findLongestPhrase(phraseArray));
+  var phraseArray = [];
+  generateRandomPhrase(phraseArray, Math.floor(Math.random() * 10) + 1);
+  printGeneratedPhrases(phraseArray);
+  console.log("\nLongest phrase: " + findLongestPhrase(phraseArray));
 }

@@ -15,3 +15,8 @@ Joanna's Boutique|Emmanuel|Kanitz|3|All girly, not for me
 Berlin Bilingual School|Emmanuel|Kanitz|5|Great teachers!
 McDonald's|Lauren|Rodrigues|2|Fries tasty but the burgers are not
 sqlite>
+
+sqlite> SELECT businesses.name, users.first_name, users.last_name, reviews.stars, reviews.comment FROM reviews JOIN businesses ON reviews.business_id = businesses.id JOIN users ON reviews.user_id = users.id WHERE businesses.id=2;
+Joanna's Boutique|Lauren|Rodrigues|5|Friendly stuff and great products
+Joanna's Boutique|Emmanuel|Kanitz|3|All girly, not for me
+sqlite>

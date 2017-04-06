@@ -6,3 +6,12 @@ sqlite> SELECT * FROM reviews JOIN businesses ON reviews.business_id = businesse
 5|5|Great teachers!|3|3|3|Berlin Bilingual School|3|Emmanuel|Kanitz
 6|2|Fries tasty but the burgers are not|4|1|4|McDonald's|1|Lauren|Rodrigues
 sqlite>
+
+sqlite> SELECT businesses.name, users.first_name, users.last_name, reviews.stars, reviews.comment FROM reviews JOIN businesses ON reviews.business_id = businesses.id JOIN users ON reviews.user_id = users.id;
+Lauren's Coffee Shop|Joanna|Joseph|5|Best coffee I've had in my life
+Lauren's Coffee Shop|Emmanuel|Kanitz|4|Good coffee but too expensive
+Joanna's Boutique|Lauren|Rodrigues|5|Friendly stuff and great products
+Joanna's Boutique|Emmanuel|Kanitz|3|All girly, not for me
+Berlin Bilingual School|Emmanuel|Kanitz|5|Great teachers!
+McDonald's|Lauren|Rodrigues|2|Fries tasty but the burgers are not
+sqlite>

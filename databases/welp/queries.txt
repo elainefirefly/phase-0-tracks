@@ -1,0 +1,8 @@
+sqlite> SELECT * FROM reviews JOIN businesses ON reviews.business_id = businesses.id JOIN users ON reviews.user_id = users.id;
+1|5|Best coffee I've had in my life|1|2|1|Lauren's Coffee Shop|2|Joanna|Joseph
+2|4|Good coffee but too expensive|1|3|1|Lauren's Coffee Shop|3|Emmanuel|Kanitz
+3|5|Friendly stuff and great products|2|1|2|Joanna's Boutique|1|Lauren|Rodrigues
+4|3|All girly, not for me|2|3|2|Joanna's Boutique|3|Emmanuel|Kanitz
+5|5|Great teachers!|3|3|3|Berlin Bilingual School|3|Emmanuel|Kanitz
+6|2|Fries tasty but the burgers are not|4|1|4|McDonald's|1|Lauren|Rodrigues
+sqlite>

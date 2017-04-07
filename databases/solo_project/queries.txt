@@ -103,3 +103,49 @@ id|name|partner|net_worth|children_count|franchise_id
 9|Melissa Gorga|Joe|-1500000.0|3|4
 10|Heather Dubrow|Terry|30000000.0|4|1
 sqlite>
+
+Release 3: Try a few different joins in your database, and record the commands and the output in queries.txt.
+
+LEFT OUTER JOIN example:
+sqlite> SELECT housewives.name, children.name, children.age FROM housewives LEFT OUTER JOIN children ON children.mom_id = housewives.id;
+name|name|age
+Lisa Vanderpump|Max|26
+Lisa Vanderpump|Pandora|31
+Bethany Frankel|Bryn|7
+Kandi Burruss|Ace|1
+Kandi Burruss|Riley|14
+Kyle Richards|Alexia|20
+Kyle Richards|Portia|9
+Teresa Giudice|Milania|11
+Carole Radziwill||
+Melissa Gorga||
+Heather Dubrow|Collette|6
+sqlite>
+
+CROSS JOIN example:
+sqlite> SELECT * FROM housewives CROSS JOIN children WHERE housewives.id = children.mom_id;
+id|name|partner|net_worth|children_count|franchise_id|id|name|age|mom_id
+1|Lisa Vanderpump|Ken|150000000.0|2|5|8|Max|26|1
+1|Lisa Vanderpump|Ken|150000000.0|2|5|4|Pandora|31|1
+2|Bethany Frankel|Dennis|25000000.0|1|2|7|Bryn|7|2
+4|Kandi Burruss|Todd|35000000.0|2|3|5|Ace|1|4
+4|Kandi Burruss|Todd|35000000.0|2|3|9|Riley|14|4
+5|Kyle Richards|Mauricio|30000000.0|4|5|10|Alexia|20|5
+5|Kyle Richards|Mauricio|30000000.0|4|5|1|Portia|9|5
+6|Teresa Giudice|Joe|-11000000.0|4|4|3|Milania|11|6
+10|Heather Dubrow|Terry|30000000.0|4|1|2|Collette|6|10
+sqlite>
+
+INNER JOIN example (3 table combo):
+sqlite> SELECT franchise.show_title, housewives.name, children.name FROM housewives JOIN franchise JOIN children ON housewives.franchise_id = franchise.id AND children.mom_id = housewives.id;
+show_title|name|name
+The Real Housewives of Beverly Hills|Kyle Richards|Portia
+The Real Housewives of Orange County|Heather Dubrow|Collette
+The Real Housewives of New Jersey|Teresa Giudice|Milania
+The Real Housewives of Beverly Hills|Lisa Vanderpump|Pandora
+The Real Housewives of Atlanta|Kandi Burruss|Ace
+The Real Housewives of New York City|Bethany Frankel|Bryn
+The Real Housewives of Beverly Hills|Lisa Vanderpump|Max
+The Real Housewives of Atlanta|Kandi Burruss|Riley
+The Real Housewives of Beverly Hills|Kyle Richards|Alexia
+sqlite>

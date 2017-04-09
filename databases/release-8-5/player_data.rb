@@ -1,11 +1,11 @@
 require "sqlite3"
+require_relative "game_data"
 
 class PlayerData
   def initialize
     @db = SQLite3::Database.new("playerdata.db")
     @db.results_as_hash = true
     create_players_table
-    create_games_table
   end
 
   def create_players_table
@@ -28,21 +28,6 @@ class PlayerData
     @db.execute(create_table_cmd)
   end
 
-  def create_games_table
-    create_table_cmd = <<-SQL
-      CREATE TABLE IF NOT EXISTS games (
-        id INTEGER PRIMARY KEY,
-        play_date VARCHAR(20),
-        category INTEGER,
-        difficulty VARCHAR(10),
-        streak INTEGER,
-        player_id INTEGER,
-        FOREIGN KEY (player_id) REFERENCES players(id)
-      );
-    SQL
-    @db.execute(create_table_cmd)
-  end
-
   def new_player?(username)
     @username = username.capitalize
     @player_info = @db.execute("SELECT * FROM players WHERE username=\"#{@username}\";")
@@ -54,13 +39,15 @@ class PlayerData
   end
 
   def game_paused?
-    paused = @db.execute("SELECT paused_game FROM players WHERE username=\"#{@username}\";")
+    puts paused = @db.execute("SELECT paused_game FROM players WHERE username=\"#{@username}\";")[0]["paused_game"]
+    puts paused.class
+    @userid = @db.execute("SELECT id FROM players WHERE username=\"#{@username}\";")[0]["id"]
     paused == 1
   end
 
   def add_player
     @db.execute("INSERT INTO players (username) VALUES (\"#{@username}\");")
-    @userid = ("SELECT id FROM players WHERE username=\"#{@username}\";")
+    @userid = @db.execute("SELECT id FROM players WHERE username=\"#{@username}\";")["id"]
   end
 
   def update_stats(new_info)
@@ -76,8 +63,12 @@ class PlayerData
     end
   end
 
-  def pause_game
-    
+  def pause_game(category, difficulty, streak)
+    today = Time.now
+    today_str = "#{today.year}-#{today.month.to_s.rjust(2,"0")}-#{today.day.to_s.rjust(2,"0")}"
+    game_arr = [today_str, category, difficulty, streak, @userid];
+    game = GameData.new(@db)
+    game.save_game(game_arr)
   end
 end
 
@@ -93,3 +84,4 @@ puts playerdata.get_stats
 hash_info = {"id"=>1, "username"=>"Cocochanel", "easy_streak"=>25, "med_streak"=>25, "hard_streak"=>15, "general_questions"=>10, "general_correct"=>20, "computer_questions"=>nil, "computer_correct"=>nil, "history_questions"=>nil, "history_correct"=>16, "paused_game"=>1, 0=>1, 1=>"Cocochanel", 2=>nil, 3=>nil, 4=>nil, 5=>nil, 6=>nil, 7=>nil, 8=>nil, 9=>nil, 10=>nil, 11=>nil}
 playerdata.update_stats(hash_info)
 puts playerdata.get_stats
+playerdata.pause_game(9,"medium",26)

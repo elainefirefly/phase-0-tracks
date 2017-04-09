@@ -38,7 +38,7 @@ class PlayerData
     @player_info
   end
 
-  def game_paused?
+  def game_paused? #CLEANUP ON THIS AISLE
     puts paused = @db.execute("SELECT paused_game FROM players WHERE username=\"#{@username}\";")[0]["paused_game"]
     puts paused.class
     @userid = @db.execute("SELECT id FROM players WHERE username=\"#{@username}\";")[0]["id"]
@@ -71,17 +71,3 @@ class PlayerData
     game.save_game(game_arr)
   end
 end
-
-playerdata = PlayerData.new
-puts playerdata.new_player?("hollerplayer")
-if playerdata.new_player?("CoCoChanel")
-  playerdata.add_player("CoCoChanel")
-else
-  puts false
-end
-puts playerdata.game_paused?
-puts playerdata.get_stats
-hash_info = {"id"=>1, "username"=>"Cocochanel", "easy_streak"=>25, "med_streak"=>25, "hard_streak"=>15, "general_questions"=>10, "general_correct"=>20, "computer_questions"=>nil, "computer_correct"=>nil, "history_questions"=>nil, "history_correct"=>16, "paused_game"=>1, 0=>1, 1=>"Cocochanel", 2=>nil, 3=>nil, 4=>nil, 5=>nil, 6=>nil, 7=>nil, 8=>nil, 9=>nil, 10=>nil, 11=>nil}
-playerdata.update_stats(hash_info)
-puts playerdata.get_stats
-playerdata.pause_game(9,"medium",26)

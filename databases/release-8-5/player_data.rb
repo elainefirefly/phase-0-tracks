@@ -4,9 +4,11 @@ class PlayerData
   def initialize
     @db = SQLite3::Database.new("playerdata.db")
     @db.results_as_hash = true
+    create_players_table
+    create_games_table
   end
 
-  def create_table
+  def create_players_table
     create_table_cmd = <<-SQL
       CREATE TABLE IF NOT EXISTS players (
         id INTEGER PRIMARY KEY,
@@ -26,6 +28,21 @@ class PlayerData
     @db.execute(create_table_cmd)
   end
 
+  def create_games_table
+    create_table_cmd = <<-SQL
+      CREATE TABLE IF NOT EXISTS games (
+        id INTEGER PRIMARY KEY,
+        play_date VARCHAR(20),
+        category INTEGER,
+        difficulty VARCHAR(10),
+        streak INTEGER,
+        player_id INTEGER,
+        FOREIGN KEY (player_id) REFERENCES players(id)
+      );
+    SQL
+    @db.execute(create_table_cmd)
+  end
+
   def new_player?(username)
     @player_info = @db.execute("SELECT * FROM players WHERE username=\"#{username}\";")
     return @player_info.empty?
@@ -37,10 +54,9 @@ class PlayerData
   def get_stats
   end
 
-  def add_player
+  def add_player(username)
   end
 end
 
 playerdata = PlayerData.new
-playerdata.create_table
 puts playerdata.new_player?("hollerplayer")

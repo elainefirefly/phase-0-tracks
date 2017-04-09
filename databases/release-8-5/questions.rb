@@ -24,6 +24,7 @@ class Questions
 
   def next_question(number)
     @questions_hash["results"][number]["question"]
+    #maybe create a cure string method to fix the encoding error
   end
 
   def give_choices(number)

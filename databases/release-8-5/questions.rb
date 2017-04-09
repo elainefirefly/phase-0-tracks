@@ -2,8 +2,8 @@ require "json"
 require "open-uri"
 
 class Questions
-  BEGIN_URL = "https://opentdb.com/api.php?amount="
-  private_constant :BEGIN_URL
+  OPENTDB_BEGIN_URL = "https://opentdb.com/api.php?amount="
+  private_constant :OPENTDB_BEGIN_URL
 
   def initialize(category, difficulty)
     @category = category
@@ -18,7 +18,7 @@ class Questions
   end
 
   def construct_url(quantity)
-    "#{BEGIN_URL}#{quantity}&#{category}&difficulty=#{difficulty}&type=multiple"
+    "#{OPENTDB_BEGIN_URL}#{quantity}&#{category}&difficulty=#{difficulty}&type=multiple"
     #"https://opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple"
   end
 

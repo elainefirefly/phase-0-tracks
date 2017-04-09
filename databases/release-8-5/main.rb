@@ -1,1 +1,5 @@
-require_relative "headers"
+require_relative "game_controller"
+
+new_game = GameController.new
+new_game.get_username
+6

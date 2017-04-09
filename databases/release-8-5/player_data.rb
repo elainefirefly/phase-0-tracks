@@ -44,22 +44,27 @@ class PlayerData
   end
 
   def new_player?(username)
-    @player_info = @db.execute("SELECT * FROM players WHERE username=\"#{username.capitalize}\";")
+    @username = username.capitalize
+    @player_info = @db.execute("SELECT * FROM players WHERE username=\"#{@username}\";")
     return @player_info.empty?
   end
 
-  def game_paused?
-    
-  end
-
   def get_stats
+    @player_info
   end
 
-  def add_player(username)
-    @db.execute("INSERT INTO players (username) VALUES (\"#{username.capitalize}\")")
+  def game_paused?
+    paused = @db.execute("SELECT paused_game FROM players WHERE username=\"#{@username}\";")
+    paused == 1
+  end
+
+  def add_player
+    @db.execute("INSERT INTO players (username) VALUES (\"#{@username}\");")
+    @userid = ("SELECT id FROM players WHERE username=\"#{@username}\";")
   end
 
   def save_stats
+    
   end
 end
 
@@ -70,3 +75,5 @@ if playerdata.new_player?("CoCoChanel")
 else
   puts false
 end
+puts playerdata.game_paused?
+puts playerdata.get_stats

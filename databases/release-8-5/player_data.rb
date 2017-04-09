@@ -44,19 +44,29 @@ class PlayerData
   end
 
   def new_player?(username)
-    @player_info = @db.execute("SELECT * FROM players WHERE username=\"#{username}\";")
+    @player_info = @db.execute("SELECT * FROM players WHERE username=\"#{username.capitalize}\";")
     return @player_info.empty?
   end
 
   def game_paused?
+    
   end
 
   def get_stats
   end
 
   def add_player(username)
+    @db.execute("INSERT INTO players (username) VALUES (\"#{username.capitalize}\")")
+  end
+
+  def save_stats
   end
 end
 
 playerdata = PlayerData.new
 puts playerdata.new_player?("hollerplayer")
+if playerdata.new_player?("CoCoChanel")
+  playerdata.add_player("CoCoChanel")
+else
+  puts false
+end

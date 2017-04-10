@@ -108,4 +108,11 @@ module GameFace
     puts summary.center(50)
     game_footer
   end
+
+  def self.prompt_paused_game
+    game_header
+    puts "You currently have a paused game."
+    puts "Do you want to continue your paused game?"
+    
+  end
 end

@@ -20,6 +20,10 @@ class GameController
       get_preference(new_player)
     else
       display_stats
+      game_paused = @player_data.game_paused?
+      get_game_info if game_paused
+
+
 
       #check for paused game
         #if there is a paused game
@@ -35,7 +39,6 @@ class GameController
   def display_stats
     @analyzer = GameAnalyzer.new(@player_data.get_stats)
     GameFace.prompt_show_stats(@analyzer.report_summary)
-
   end
 
   def get_preference(new)
@@ -45,6 +48,10 @@ class GameController
       start_game
     else
     end
+  end
+
+  def get_game_info
+    game_info = @player_data.get_game
   end
 
   def ask_category(invalid=false)

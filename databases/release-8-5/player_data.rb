@@ -5,6 +5,7 @@ class PlayerData
   def initialize
     @db = SQLite3::Database.new("playerdata.db")
     @db.results_as_hash = true
+    @game = GameData.new(@db)
     create_players_table
   end
 
@@ -31,7 +32,7 @@ class PlayerData
   def new_player?(username)
     @username = username.capitalize
     @player_info = @db.execute("SELECT * FROM players WHERE username=\"#{@username}\";")
-    return @player_info.empty?
+    @new = @player_info.empty?
   end
 
   def get_stats
@@ -41,13 +42,13 @@ class PlayerData
   def game_paused? #CLEANUP ON THIS AISLE
     puts paused = @db.execute("SELECT paused_game FROM players WHERE username=\"#{@username}\";")[0]["paused_game"]
     puts paused.class
-    @userid = @db.execute("SELECT id FROM players WHERE username=\"#{@username}\";")[0]["id"]
+    @user_id = @db.execute("SELECT id FROM players WHERE username=\"#{@username}\";")[0]["id"]
     paused == 1
   end
 
   def add_player
     @db.execute("INSERT INTO players VALUES (\"#{@username}\",0,0,0,0,0,0,0,0,0,0);")
-    @userid = @db.execute("SELECT id FROM players WHERE username=\"#{@username}\";")[0]["id"]
+    @user_id = @db.execute("SELECT id FROM players WHERE username=\"#{@username}\";")[0]["id"]
     @player_info = @db.execute("SELECT * FROM players WHERE username=\"#{@username}\";")
   end
 
@@ -56,9 +57,9 @@ class PlayerData
       next if key == "id" || key == "username" || value.nil?
       break if key.is_a? Integer
       if value.is_a? String
-        puts update_str = "UPDATE players SET #{key}=\"#{value}\" WHERE username=\"#{@username}\";"
+        update_str = "UPDATE players SET #{key}=\"#{value}\" WHERE username=\"#{@username}\";"
       else
-        puts update_str = "UPDATE players SET #{key}=#{value} WHERE username=\"#{@username}\";"
+        update_str = "UPDATE players SET #{key}=#{value} WHERE username=\"#{@username}\";"
       end
       @db.execute(update_str)
     end
@@ -67,8 +68,11 @@ class PlayerData
   def pause_game(category, difficulty, streak)
     today = Time.now
     today_str = "#{today.year}-#{today.month.to_s.rjust(2,"0")}-#{today.day.to_s.rjust(2,"0")}"
-    game_arr = [today_str, category, difficulty, streak, @userid];
-    game = GameData.new(@db)
-    game.save_game(game_arr)
+    game_arr = [today_str, category, difficulty, streak, @user_id];
+    @game.save_game(game_arr, @new)
+  end
+
+  def get_game
+    paused_game = @game.retrieve_game(@user_id)
   end
 end

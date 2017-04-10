@@ -21,10 +21,27 @@ class GameData
     @db.execute(create_table_cmd)
   end
 
-  def save_game(game_info)
-    game_info.each_with_index { |val,i| game_info[i] = "\"#{val}\"" if i == 0 || i == 2}
-    values_str = game_info.join ","
-    puts insert_str = "INSERT INTO games (play_date, category, difficulty, streak, player_id) VALUES (#{values_str});"
-    @db.execute(insert_str)
+  def save_game(game_info, new_flag)
+    if new_flag
+      game_info.each_with_index { |val,i| game_info[i] = "\"#{val}\"" if i == 0 || i == 2}
+      values_str = game_info.join ","
+      insert_str = "INSERT INTO games (play_date, category, difficulty, streak, player_id) VALUES (#{values_str});"
+      @db.execute(insert_str)
+    else
+      key_arr = %w{play_date category difficulty streak}
+      game_info.each_with_index do |info,idx|
+        break if idx == key_arr.length
+        if info.is_a? String
+          update_str = "UPDATE players SET #{key_arr[idx]}=\"#{info}\" WHERE player_id=#{game_info[-1]};"
+        else
+          update_str = "UPDATE players SET #{key_arr[idx]}=#{info} WHERE player_id=#{game_info[-1]};"
+        end
+        @db.execute(update_str)
+      end
+    end
+  end
+
+  def retrieve_game(user_id)
+    @game_info = @db.execute("SELECT * FROM games WHERE player_id=\"#{user_id}\";")
   end
 end

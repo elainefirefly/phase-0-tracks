@@ -78,6 +78,7 @@ class GameController
       give_result(player_answer, correct_answer)
     end
     update_standing
+    #update stats
   end
 
   def get_answer(invalid=false)

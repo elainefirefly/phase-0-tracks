@@ -39,6 +39,11 @@ class PlayerData
     @player_info
   end
 
+  def retrieve_streak(key)
+    @player_info[0][key]
+  end
+
+
   def game_paused? #CLEANUP ON THIS AISLE
     puts paused = @db.execute("SELECT paused_game FROM players WHERE username=\"#{@username}\";")[0]["paused_game"]
     puts paused.class
@@ -66,7 +71,7 @@ class PlayerData
     end
   end
 
-  def pause_game(category, difficulty, streak)
+  def save(category, difficulty, streak)
     today = Time.now
     today_str = "#{today.year}-#{today.month.to_s.rjust(2,"0")}-#{today.day.to_s.rjust(2,"0")}"
     game_arr = [today_str, category, difficulty, streak, @user_id];

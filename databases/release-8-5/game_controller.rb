@@ -20,20 +20,16 @@ class GameController
     if new_player
       @player_data.add_player
       @analyzer = GameAnalyzer.new(@player_data.get_stats)
-      get_preference(new_player)
+      get_game_preference
     else
       display_stats
-      game_paused = @player_data.game_paused?
-      get_game_info if game_paused
-      #check for paused game
-        #if there is a paused game
-          #get details of the paused game
-          #generate the questions
-        #if no paused game, start new game
-          #get preferences from user
-          #generate the questions
+      if @player_data.game_paused?
+        get_game_info
+      else
+        get_game_preference
+      end
     end
-
+    start_game
   end
 
   def display_stats
@@ -41,21 +37,38 @@ class GameController
     GameFace.prompt_show_stats(@analyzer.report_summary)
   end
 
-  def get_preference(new)
-    if new
+  def get_game_preference
       ask_category
       ask_difficulty
-      start_game
-    else
-    end
   end
 
   def get_game_info
     game_info = @player_data.get_game
-    puts game_info
+    @streak = game_info[0]["streak"]
+    @category = game_info[0]["category"]
+    @difficulty = game_info[0]["difficulty"]
+    @play_date = game_info[0]["play_date"]
+    ask_continue_game
   end
 
-  def ask_category
+  def ask_continue_game
+    category = case @category
+    when 9 then "General Knowledge"
+    when 18 then "Computer Science"
+    when 23 then "History"
+    end
+    GameFace.prompt_paused_game(@play_date,@streak,@difficulty,category)
+    continue = gets.chomp.downcase
+    if continue == "y"
+      start_game
+    elsif continue == "n"
+      get_game_preference
+    else
+      ask_continue_game
+    end
+  end
+
+  def ask_category(invalid=false)
     GameFace.prompt_not_valid if invalid
     GameFace.prompt_category
     category_str = gets.chomp
@@ -64,12 +77,12 @@ class GameController
     when "b" then 18 #Computer Science
     when "c" then 23 #History
     else
-      ask_category
+      invalid = true
+      ask_category(invalid)
     end
-    @info_bank["category"] = @category
   end
 
-  def ask_difficulty
+  def ask_difficulty(invalid=false)
     GameFace.prompt_not_valid if invalid
     GameFace.prompt_difficulty
     difficulty_str = gets.chomp
@@ -78,9 +91,9 @@ class GameController
     when "b" then "medium"
     when "c" then "hard"
     else
-      ask_difficulty
+      invalid = true
+      ask_difficulty(invalid)
     end
-    @info_bank["difficulty"] = {@difficulty}
   end
 
   def start_game(qty=10)
@@ -129,7 +142,7 @@ class GameController
     when "hard" then "hard_streak"
     end
     if @info_bank[key] == nil
-      personal_best = @analyzer.get_best_streak(@difficulty)
+      personal_best = @player_data.retrieve_streak(key)
     else
       personal_best = @info_bank[key]
     end
@@ -160,7 +173,7 @@ class GameController
     when 23 then "history_questions"
     end
     @stat = @player_data.get_stats
-    @question_count += @stat[key]
+    @question_count += @stat[0][key]
     @info_bank[key] = @quesiton_count
   end
 
@@ -170,7 +183,7 @@ class GameController
     when 18 then "computer_correct"
     when 23 then "history_correct"
     end
-    @question_count += @stat[key]
+    @question_count += @stat[0][key]
     @info_bank[key] = @correct_count
   end
 
@@ -180,7 +193,7 @@ class GameController
   end
 
   def save_game
-    @player_data.pause_game(@category, @difficulty, @streak)
+    @player_data.save(@category, @difficulty, @streak)
     key = tally_questions
     tally_answers
     @player_data.update_stats(@info_bank)

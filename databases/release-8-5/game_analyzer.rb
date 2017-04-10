@@ -13,25 +13,25 @@ class GameAnalyzer
   end
 
   def performance_overall
-    @total_quest = @data["general_questions"] + @data["computer_questions"] + @data["history_questions"]
-    @total_corr = @data["general_correct"] + @data["computer_correct"] + @data["history_correct"]
+    @total_quest = @data[0]["general_questions"] + @data[0]["computer_questions"] + @data[0]["history_questions"]
+    @total_corr = @data[0]["general_correct"] + @data[0]["computer_correct"] + @data[0]["history_correct"]
     return 0 if @total_quest == 0
     (@total_corr.fdiv(@total_quest) * 100).round
   end
 
   def general_performance
-    return 0 if @data["general_questions"] == 0
-    (@data["general_correct"].fdiv(@data["general_questions"]) * 100).round
+    return 0 if @data[0]["general_questions"] == 0
+    (@data[0]["general_correct"].fdiv(@data[0]["general_questions"]) * 100).round
   end
 
   def computer_performance
-    return 0 if @data["computer_questions"] == 0
-    (@data["computer_correct"].fdiv(@data["computer_questions"]) * 100).round
+    return 0 if @data[0]["computer_questions"] == 0
+    (@data[0]["computer_correct"].fdiv(@data[0]["computer_questions"]) * 100).round
   end
 
   def history_performance
-    return 0 if @data["history_questions"] == 0
-    (@data["history_correct"].fdiv(@data["history_questions"]) * 100).round
+    return 0 if @data[0]["history_questions"] == 0
+    (@data[0]["history_correct"].fdiv(@data[0]["history_questions"]) * 100).round
   end
 
   def report_summary

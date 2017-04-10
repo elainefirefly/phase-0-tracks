@@ -86,10 +86,10 @@ module GameFace
     end
   end
 
-  def self.prompt_fantastic
+  def self.prompt_fantastic(curr_strk, best_strk)
     game_header("\u{1f3c6}")
     puts "You have answered 10 questions. Good going!"
-    puts "You achieved #{curr_streak} streak."
+    puts "You achieved #{curr_strk} streak."
     puts "You beat your personal best of #{best_strk}"
     puts "for this level and category."
     game_footer
@@ -105,6 +105,8 @@ module GameFace
 
   def self.prompt_show_stats(summary)
     game_header
+    puts "Welcome back! Here's how you did previously:".center(50)
+    puts
     puts summary.center(50)
     game_footer
   end
@@ -113,6 +115,12 @@ module GameFace
     game_header
     puts "You currently have a paused game."
     puts "Do you want to continue your paused game?"
-    
+  end
+
+  def self.prompt_new_round
+    game_header
+    puts "Would you like a new round?".center(50)
+    puts
+    puts "Type (y) for yes or (n) for No?"
   end
 end

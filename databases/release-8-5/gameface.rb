@@ -103,6 +103,9 @@ module GameFace
 
     puts "Press ENTER to continue...".center(50)
     gets
+  end
+
+  
 
 
   def show_stats

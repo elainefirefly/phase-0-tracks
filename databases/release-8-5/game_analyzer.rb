@@ -3,13 +3,13 @@ class GameAnalyzer
     @data = data
   end
 
-  def best_streak(level)
+  def get_best_streak(level)
      key = case level
      when "easy" then "easy_streak"
      when "medium" then "med_streak"
      when "hard" then "hard_streak"
      end
-     @data[key]
+     @data[0][key]
   end
 
   def performance_overall
@@ -37,9 +37,9 @@ class GameAnalyzer
   def report_summary
     <<-SUMMARY
     Best Streak:
-    Easy                  #{best_streak("easy")}
-    Medium                #{best_streak("medium")}
-    Hard                  #{best_streak("hard")}
+    Easy                  #{get_best_streak("easy")}
+    Medium                #{get_best_streak("medium")}
+    Hard                  #{get_best_streak("hard")}
 
     Overall Performance:   #{performance_overall}%
     General Knowledge      #{general_performance}%
@@ -51,21 +51,3 @@ class GameAnalyzer
     SUMMARY
   end
 end
-
-hash_info = {
-"id"=>1,
-"username"=>"Cocochanel",
-"easy_streak"=>10,
-"med_streak"=>5,
-"hard_streak"=>0,
-"general_questions"=>20,
-"general_correct"=>10,
-"computer_questions"=>5,
-"computer_correct"=>0,
-"history_questions"=>20,
-"history_correct"=>16,
-"paused_game"=>1,
-0=>1, 1=>"Cocochanel", 2=>nil, 3=>nil, 4=>nil, 5=>nil, 6=>nil, 7=>nil, 8=>nil, 9=>nil, 10=>nil, 11=>nil}
-
-analyzer = GameAnalyzer.new(hash_info)
-puts analyzer.report_summary

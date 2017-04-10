@@ -5,6 +5,7 @@ class GameController
     @player_data = PlayerData.new
     @streak = 0
   end
+
   def get_username
     GameFace.greet
     username = gets.chomp
@@ -15,9 +16,10 @@ class GameController
     new_player = @player_data.new_player?(name)
     if new_player
       @player_data.add_player
-      get_preference
-      #generate the questions
+      @analyzer = GameAnalyzer.new(@player_data.get_stats)
+      get_preference(new_player)
     else
+      @analyzer = GameAnalyzer.new(@player_data.get_stats)
       #show stats
       #check for paused game
         #if there is a paused game
@@ -27,22 +29,23 @@ class GameController
           #get preferences from user
           #generate the questions
     end
-    @analyzer = GameAnalyzer.new(@player_data.get_stats)
+
   end
 
-  def get_preference
-      category = ask_category
-      difficulty = ask_difficulty
-      puts "category: #{category}"
-      puts "difficulty: #{difficulty}"
-      start_game(category, difficulty)
+  def get_preference(new)
+    if new
+      ask_category
+      ask_difficulty
+      start_game
+    else
+    end
   end
 
   def ask_category(invalid=false)
     GameFace.prompt_not_valid if invalid
     GameFace.prompt_category
     category_str = gets.chomp
-    category = case category_str.downcase
+    @category = case category_str.downcase
     when "a" then 9 #General Knowledge
     when "b" then 18 #Computer Science
     when "c" then 23 #History
@@ -56,7 +59,7 @@ class GameController
     GameFace.prompt_not_valid if invalid
     GameFace.prompt_difficulty
     difficulty_str = gets.chomp
-    difficulty = case difficulty_str.downcase
+    @difficulty = case difficulty_str.downcase
     when "a" then "easy"
     when "b" then "medium"
     when "c" then "hard"
@@ -66,8 +69,8 @@ class GameController
     end
   end
 
-  def start_game(category, difficulty, qty=10)
-    questions = Questions.new(category, difficulty)
+  def start_game(qty=10)
+    questions = Questions.new(@category, @difficulty)
     questions.generate(qty)
     qty.times do |n|
       @question = questions.next_question(n)
@@ -107,7 +110,7 @@ class GameController
   end
 
   def update_standing
-
-    GameFace.prompt_fantastic
+    if @analyzer.get_best_streak(@difficulty)
+    end
   end
 end

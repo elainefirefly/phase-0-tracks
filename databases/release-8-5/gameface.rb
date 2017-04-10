@@ -18,6 +18,7 @@ module GameFace
   def self.prompt_category
     game_header
     puts "Which stuff do you know best?".center(50)
+    puts
     puts "(a) General Knowledge".prepend(" " * 10)
     puts "(b) Computer Science".prepend(" " * 10)
     puts "(c) History".prepend(" " * 10)
@@ -28,7 +29,8 @@ module GameFace
   def self.prompt_difficulty
     game_header
     puts "How should we serve your questions?".center(50)
-    puts "(a) Like how I want my eggs done, OVER EASY.".prepend(" " * 5)
+    puts
+    puts "(a) Like how I want my eggs done – over EASY.".prepend(" " * 5)
     puts "(b) I want just a happy MEDIUM.".prepend(" " * 5)
     puts "(c) I eat HARD boiled difficult for breakfast.".prepend(" " * 5)
     puts
@@ -45,7 +47,15 @@ module GameFace
 
   def self.prompt_question(question, choices)
     game_header
-
+    puts "Question: #{question}".center(50)
+    puts
+    letter = "a"
+    choices.each do |choice|
+      puts "(#{letter}) #{choice}".prepend(" " * 10)
+      letter.next!
+    end
+    puts
+    puts "Type the letter of your choice:"
   end
 
   def show_stats

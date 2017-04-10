@@ -72,7 +72,8 @@ class GameController
       question = questions.next_question(n)
       choices = questions.give_choices(n)
       answer_idx = get_answer(question, choices)
-      give_result(answer_idx)
+      puts "answer: #{answer_idx}"
+      #give_result(answer_idx)
     end
     #handle generating more questions if necessary
   end

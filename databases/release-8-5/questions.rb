@@ -12,13 +12,14 @@ class Questions
 
   def generate(quantity)
     url = construct_url(quantity)
+    puts url
     obj = URI.parse(url).read
     @questions_hash = JSON.parse(obj)
     puts @questions_hash
   end
 
   def construct_url(quantity)
-    "#{OPENTDB_BEGIN_URL}#{quantity}&#{category}&difficulty=#{difficulty}&type=multiple"
+    "#{OPENTDB_BEGIN_URL}#{quantity}&category=#{@category}&difficulty=#{@difficulty}&type=multiple"
     #"https://opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple"
   end
 

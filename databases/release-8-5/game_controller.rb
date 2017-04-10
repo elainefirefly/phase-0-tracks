@@ -3,6 +3,7 @@ require_relative "headers"
 class GameController
   def initialize
     @player_data = PlayerData.new
+    @streak = 0
   end
   def get_username
     GameFace.greet
@@ -64,6 +65,29 @@ class GameController
     end
   end
 
-  def start_game
+  def start_game(category, difficulty, qty=10)
+    questions = Questions.new(category, difficulty)
+    questions.generate(qty)
+    qty.times do |n|
+      question = questions.next_question(n)
+      choices = questions.give_choices(n)
+      answer_idx = get_answer(question, choices)
+      give_result(answer_idx)
+    end
+    #handle generating more questions if necessary
+  end
+
+  def get_answer(question, choices, invalid=false)
+    GameFace.prompt_question(question, choices)
+    answer_str = gets.chomp
+    answer = case answer_str.downcase
+    when "a" then 0
+    when "b" then 1
+    when "c" then 2
+    when "d" then 3
+    else
+      invalid = true
+      get_answer(question, choices, invalid)
+    end
   end
 end

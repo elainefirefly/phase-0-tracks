@@ -43,6 +43,11 @@ module GameFace
     gets
   end
 
+  def self.prompt_question(question, choices)
+    game_header
+
+  end
+
   def show_stats
     game_header
 

@@ -19,7 +19,7 @@ class GameController
       @analyzer = GameAnalyzer.new(@player_data.get_stats)
       get_preference(new_player)
     else
-      @analyzer = GameAnalyzer.new(@player_data.get_stats)
+      display_stats
 
       #check for paused game
         #if there is a paused game
@@ -33,7 +33,9 @@ class GameController
   end
 
   def display_stats
-    
+    @analyzer = GameAnalyzer.new(@player_data.get_stats)
+    GameFace.prompt_show_stats(@analyzer.report_summary)
+
   end
 
   def get_preference(new)

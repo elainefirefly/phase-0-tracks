@@ -7,6 +7,12 @@ module GameFace
     puts
   end
 
+  def self.game_footer
+    puts
+    puts "Press ENTER to continue...".center(50)
+    gets
+  end
+
   def self.greet
     game_header
     puts "What's your username?".center(50)
@@ -40,9 +46,7 @@ module GameFace
   def self.prompt_not_valid
     game_header
     puts "\u{1f645}  UH-OH! That is not a valid input \u{1f645}".center(50)
-    puts
-    puts "Press ENTER to continue...".center(50)
-    gets
+    game_footer
   end
 
   def self.prompt_question(question, choices)
@@ -78,9 +82,7 @@ module GameFace
       puts "The correct answer to the question:".center(50)
       puts "\"#{question}\"".center(50)
       puts "is \"(#{letter[a_idx]}) #{choices[a_idx]}\"".center(50)
-      puts
-      puts "Press ENTER to continue...".center(50)
-      gets
+      game_footer
     end
   end
 
@@ -90,9 +92,7 @@ module GameFace
     puts "You achieved #{curr_streak} streak."
     puts "You beat your personal best of #{best_strk}"
     puts "for this level and category."
-
-    puts "Press ENTER to continue...".center(50)
-    gets
+    game_footer
   end
 
   def self.prompt_not_enough
@@ -100,15 +100,12 @@ module GameFace
     puts "You have answered 10 questions but no banana".center(50)
     puts "Your current streak is less than your personal best".center(50)
     puts "for this level and category".center(50)
-
-    puts "Press ENTER to continue...".center(50)
-    gets
+    game_footer
   end
 
-  
-
-
-  def show_stats
+  def self.prompt_show_stats(summary)
     game_header
+    puts summary.center(50)
+    game_footer
   end
 end

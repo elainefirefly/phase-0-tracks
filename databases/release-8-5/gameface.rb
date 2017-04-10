@@ -58,8 +58,33 @@ module GameFace
     puts "Type the letter of your choice:"
   end
 
+  def self.prompt_answer(correct, curr_streak, question, choices, a_idx, p_idx)
+    letter = %w{a b c d}
+    congratulate = ["You got it!", "That's right!", "Awesome answer!", "Score!", "Genius! Way to go!", "Hey walking Wiki!"]
+    shame = ["We thought you can handle it...", "You just lost your streak... neener neener", "It must be tough to be you...", "How can you not know that???"]
+    game_header
+    if correct
+      puts "\u{1f647}  #{congratulate.sample} \u{1f647}".center(50)
+      puts
+      puts "Your answer \"(#{letter[p_idx]}) #{choices[p_idx]}\" to ".center(50)
+      puts "\"#{question}\" is correct!".center(50)
+      puts "Your current streak is: #{curr_streak}".center(50)
+      puts
+      puts "Press ENTER to continue...".center(50)
+      gets
+    else
+      puts "\u{1f481}  #{shame.sample} \u{1f481}".center(50)
+      puts
+      puts "The correct answer to the question:".center(50)
+      puts "\"#{question}\"".center(50)
+      puts "is \"(#{letter[a_idx]}) #{choices[a_idx]}\"".center(50)
+      puts
+      puts "Press ENTER to continue...".center(50)
+      gets
+    end
+  end
+
   def show_stats
     game_header
-
   end
 end

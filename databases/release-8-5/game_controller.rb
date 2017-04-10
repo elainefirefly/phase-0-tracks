@@ -69,17 +69,18 @@ class GameController
     questions = Questions.new(category, difficulty)
     questions.generate(qty)
     qty.times do |n|
-      question = questions.next_question(n)
-      choices = questions.give_choices(n)
-      answer_idx = get_answer(question, choices)
-      puts "answer: #{answer_idx}"
-      #give_result(answer_idx)
+      @question = questions.next_question(n)
+      @choices = questions.give_choices(n)
+      player_answer = get_answer
+      puts "answer: #{player_answer}"
+      correct_answer = questions.reveal_answer
+      give_result(player_answer, correct_answer)
     end
-    #handle generating more questions if necessary
+    update_standing
   end
 
-  def get_answer(question, choices, invalid=false)
-    GameFace.prompt_question(question, choices)
+  def get_answer(invalid=false)
+    GameFace.prompt_question(@question, @choices)
     answer_str = gets.chomp
     answer = case answer_str.downcase
     when "a" then 0
@@ -88,7 +89,21 @@ class GameController
     when "d" then 3
     else
       invalid = true
-      get_answer(question, choices, invalid)
+      get_answer(invalid)
     end
+  end
+
+  def give_result(player_answer, right_answer)
+    if player_answer == right_answer
+      @streak += 1
+      correct = true
+    else
+      @streak = 0
+      correct = false
+    end
+    GameFace.prompt_answer(correct, @streak, @question, @choices, right_answer, player_answer)
+  end
+
+  def get_standing
   end
 end

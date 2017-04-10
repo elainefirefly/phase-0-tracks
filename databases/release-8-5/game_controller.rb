@@ -20,7 +20,7 @@ class GameController
       get_preference(new_player)
     else
       @analyzer = GameAnalyzer.new(@player_data.get_stats)
-      #show stats
+
       #check for paused game
         #if there is a paused game
           #get details of the paused game
@@ -30,6 +30,10 @@ class GameController
           #generate the questions
     end
 
+  end
+
+  def display_stats
+    
   end
 
   def get_preference(new)

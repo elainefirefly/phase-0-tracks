@@ -46,7 +46,7 @@ class PlayerData
   end
 
   def add_player
-    @db.execute("INSERT INTO players (username) VALUES (\"#{@username}\");")
+    @db.execute("INSERT INTO players VALUES (\"#{@username}\",0,0,0,0,0,0,0,0,0,0);")
     @userid = @db.execute("SELECT id FROM players WHERE username=\"#{@username}\";")[0]["id"]
     @player_info = @db.execute("SELECT * FROM players WHERE username=\"#{@username}\";")
   end

@@ -48,6 +48,7 @@ class PlayerData
   def add_player
     @db.execute("INSERT INTO players (username) VALUES (\"#{@username}\");")
     @userid = @db.execute("SELECT id FROM players WHERE username=\"#{@username}\";")[0]["id"]
+    @player_info = @db.execute("SELECT * FROM players WHERE username=\"#{@username}\";")
   end
 
   def update_stats(new_info)

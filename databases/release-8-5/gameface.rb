@@ -1,9 +1,9 @@
 module GameFace
 
-  def self.game_header
+  def self.game_header(emoji="\u{1f31f}")
     system "clear" #clears the terminal
     puts
-    puts "  KNOW YOUR STUFF GAME ".center(50, "  \u{1f31f} ")
+    puts "  KNOW YOUR STUFF GAME ".center(50, "  #{emoji} ")
     puts
   end
 
@@ -83,6 +83,27 @@ module GameFace
       gets
     end
   end
+
+  def self.prompt_fantastic
+    game_header("\u{1f3c6}")
+    puts "You have answered 10 questions. Good going!"
+    puts "You achieved #{curr_streak} streak."
+    puts "You beat your personal best of #{best_strk}"
+    puts "for this level and category."
+
+    puts "Press ENTER to continue...".center(50)
+    gets
+  end
+
+  def self.prompt_not_enough
+    game_header("\u{1f64a}")
+    puts "You have answered 10 questions but no banana".center(50)
+    puts "Your current streak is less than your personal best".center(50)
+    puts "for this level and category".center(50)
+
+    puts "Press ENTER to continue...".center(50)
+    gets
+
 
   def show_stats
     game_header

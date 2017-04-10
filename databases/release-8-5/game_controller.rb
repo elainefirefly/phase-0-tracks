@@ -8,10 +8,10 @@ class GameController
   def get_username
     GameFace.greet
     username = gets.chomp
-    check_username(username)
+    get_user_data(username)
   end
 
-  def check_username(name)
+  def get_user_data(name)
     new_player = @player_data.new_player?(name)
     if new_player
       @player_data.add_player
@@ -27,6 +27,7 @@ class GameController
           #get preferences from user
           #generate the questions
     end
+    @analyzer = GameAnalyzer.new(@player_data.get_stats)
   end
 
   def get_preference
@@ -104,6 +105,8 @@ class GameController
     GameFace.prompt_answer(correct, @streak, @question, @choices, right_answer, player_answer)
   end
 
-  def get_standing
+  def update_standing
+
+    GameFace.prompt_fantastic
   end
 end

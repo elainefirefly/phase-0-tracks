@@ -1,5 +1,4 @@
-require "json"
-require "open-uri"
+require "httparty"
 
 class Questions
   OPENTDB_BEGIN_URL = "https://opentdb.com/api.php?amount="
@@ -12,10 +11,7 @@ class Questions
 
   def generate(quantity)
     url = construct_url(quantity)
-    puts url
-    obj = URI.parse(url).read
-    @questions_hash = JSON.parse(obj)
-    puts @questions_hash
+    @questions_hash = HTTParty.get(url).parsed_response
   end
 
   def construct_url(quantity)

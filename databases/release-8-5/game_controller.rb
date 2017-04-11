@@ -97,6 +97,7 @@ class GameController
   end
 
   def start_game(qty=10)
+    @info_bank["paused_game"] = 0
     questions = Questions.new(@category, @difficulty)
     questions.generate(qty)
     qty.times do |n|

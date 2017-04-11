@@ -32,9 +32,9 @@ class GameData
       game_info.each_with_index do |info,idx|
         break if idx == key_arr.length
         if info.is_a? String
-          update_str = "UPDATE players SET #{key_arr[idx]}=\"#{info}\" WHERE player_id=#{game_info[-1]};"
+          update_str = "UPDATE games SET #{key_arr[idx]}=\"#{info}\" WHERE player_id=#{game_info[-1]}\;"
         else
-          update_str = "UPDATE players SET #{key_arr[idx]}=#{info} WHERE player_id=#{game_info[-1]};"
+          update_str = "UPDATE games SET #{key_arr[idx]}=#{info} WHERE player_id=#{game_info[-1]};"
         end
         @db.execute(update_str)
       end

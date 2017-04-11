@@ -70,8 +70,8 @@ module GameFace
     if correct
       puts "\u{1f647}  #{congratulate.sample} \u{1f647}".center(50)
       puts
-      puts "Your answer \"(#{letter[p_idx]}) #{choices[p_idx]}\" to ".center(50)
-      puts "\"#{question}\" is correct!".center(50)
+      puts "Your answer \"(#{letter[p_idx]}) #{choices[p_idx]}\" is correct to question ".center(50)
+      puts "\"#{question}\"".center(50)
       puts
       puts "Your current streak is: #{curr_streak}".center(50)
       puts
@@ -84,7 +84,7 @@ module GameFace
       puts "\"#{question}\"".center(50)
       puts "is \"(#{letter[a_idx]}) #{choices[a_idx]}\"".center(50)
       puts
-      puts "Streak : 0"
+      puts "Streak : 0".center(50)
       game_footer
     end
   end
@@ -134,6 +134,9 @@ module GameFace
     game_header
     puts "\u{1f35d}  Hasta pasta! \u{1f377}".center(50)
     puts
-    puts "".center(44, "  \u{1f31f} ")
+    puts "\u{00a9}2017 Joanna Joseph. All rights reserved.".center(50)
+    puts
+    puts "  Thanks for playing!".center(44, "  \u{1f31f} ")
+    puts
   end
 end

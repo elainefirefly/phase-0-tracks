@@ -22,7 +22,8 @@ class GameData
   end
 
   def save_game(game_info, new_flag)
-    if new_flag
+    no_player_id = @db.execute("SELECT * FROM games WHERE player_id=#{game_info[-1]};").empty?
+    if new_flag || no_player_id
       game_info.each_with_index { |val,i| game_info[i] = "\"#{val}\"" if i == 0 || i == 2}
       values_str = game_info.join ","
       insert_str = "INSERT INTO games (play_date, category, difficulty, streak, player_id) VALUES (#{values_str});"

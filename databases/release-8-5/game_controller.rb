@@ -38,8 +38,8 @@ class GameController
   end
 
   def get_game_preference
-      ask_category
-      ask_difficulty
+    ask_category
+    ask_difficulty
   end
 
   def get_game_info

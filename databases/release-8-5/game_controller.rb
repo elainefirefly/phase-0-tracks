@@ -159,8 +159,11 @@ class GameController
     GameFace.prompt_new_round
     continue = gets.chomp
     case continue.downcase
-    when "y" then start_game
-    when "n" then pause_game
+    when "y"
+      start_game
+      save_game
+    when "n"
+       pause_game
     else
       ask_new_round
     end
@@ -174,7 +177,7 @@ class GameController
     end
     @stat = @player_data.get_stats
     @question_count += @stat[0][key]
-    @info_bank[key] = @quesiton_count
+    @info_bank[key] = @question_count
   end
 
   def tally_answers
@@ -183,7 +186,7 @@ class GameController
     when 18 then "computer_correct"
     when 23 then "history_correct"
     end
-    @question_count += @stat[0][key]
+    @correct_count += @stat[0][key]
     @info_bank[key] = @correct_count
   end
 
@@ -194,8 +197,9 @@ class GameController
 
   def save_game
     @player_data.save(@category, @difficulty, @streak)
-    key = tally_questions
+    tally_questions
     tally_answers
+    puts @info_bank
     @player_data.update_stats(@info_bank)
   end
 end

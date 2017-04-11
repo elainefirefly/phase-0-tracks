@@ -43,7 +43,6 @@ class PlayerData
     @player_info[0][key]
   end
 
-
   def game_paused? #CLEANUP ON THIS AISLE
     paused = @db.execute("SELECT paused_game FROM players WHERE username=\"#{@username}\";")[0]["paused_game"]
     paused.class

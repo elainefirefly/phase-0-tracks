@@ -38,8 +38,8 @@ class GameController
   end
 
   def get_game_preference
-      ask_category
-      ask_difficulty
+    ask_category
+    ask_difficulty
   end
 
   def get_game_info
@@ -151,7 +151,7 @@ class GameController
       GameFace.prompt_fantastic(@streak, personal_best)
       @info_bank[key] = @streak
     else
-      GameFace.prompt_not_enough
+      GameFace.prompt_not_enough(@streak, personal_best)
     end
     ask_new_round
   end
@@ -164,7 +164,7 @@ class GameController
       start_game
       save_game
     when "n"
-       pause_game
+      @streak > 0 ? pause_game : save_game
     else
       ask_new_round
     end
@@ -202,5 +202,10 @@ class GameController
     tally_answers
     puts @info_bank
     @player_data.update_stats(@info_bank)
+    exit_game
+  end
+
+  def exit_game
+    GameFace.prompt_bye
   end
 end

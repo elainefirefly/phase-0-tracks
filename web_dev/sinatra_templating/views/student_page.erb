@@ -9,5 +9,10 @@
     <p>Hello, <%=@student[0]["name"]%></p>
     <p>You will be attending <%=@student[0]["campus"]%> campus.</p>
     <p>In case you didn't know, you are now <%=@student[0]["age"]%> years old.</p>
+    <form action="/student/update" method="post">
+      <input type="text" name="name" placeholder="Your Name">
+      <input type="hidden" name="id" value=<%=@student[0]["id"]%>>
+      <button type="submit" name="button">Submit</button>
+    </form>
   </body>
 </html>

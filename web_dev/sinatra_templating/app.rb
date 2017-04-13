@@ -17,6 +17,12 @@ get '/students/new' do
   erb :new_student
 end
 
+get '/students/:id' do
+  id = params[:id]
+  @student = db.execute("SELECT * FROM students WHERE id=?",id)
+  erb :student_page
+end
+
 # create new students via
 # a form
 post '/students' do

@@ -28,4 +28,4 @@
 |Harmless when clicking the back button | Data will be re-submitted when back button is clicked
 
 *Optional bonus question: What is a cookie (the technical kind, not the delicious kind)? How does it relate to HTTP requests?*  
-A cookie is a small piece of data sent from a website and stored on the user's computer by the web browers while the user is browsing. The browser sends them back to the server with every request, introducing states into otherwise statless HTTP transactions.  Without cookies, each retrieval of a web page or component of a web page would be an isolated event, largely unrelated to all other page views made by the user on the website.
+A cookie is a small piece of data sent from a website and stored on the user's computer by the web browers while the user is browsing. The browser sends them back to the server with every request, introducing states into otherwise stateless HTTP transactions.  Without cookies, each retrieval of a web page or component of a web page would be an isolated event, largely unrelated to all other page views made by the user on the website.

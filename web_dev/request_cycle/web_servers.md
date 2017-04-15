@@ -23,4 +23,13 @@ According to my research the advantages are as follows:
 
 
 *Optional bonus question: Why is it considered a bad idea to run programs as the root user on a Linux system?*  
-Running as root user is dangerous because one may inadvertently run a script that can wipeout the entire hard drive. Running on root will give access to all files, so a seemingly harmless "rm -rf \*" piece of command is actually catastrophic. One might also run a malicious software that can mess with the system and critical files.
+Running as root user is dangerous because one may inadvertently run a script that can wipeout the entire hard drive. Running on root will give access to all files, so a seemingly harmless "rm -rf \*" piece of command is actually catastrophic. One might also run a malicious software that can mess with the system and critical files.  
+
+*Find at least five properties that might be interesting to change once the page is loaded*  
+1. .innerText
+2. style.fontKerning
+3. style.zIndex
+4. style.overflowWrap
+5. .hidden
+6. style.animation
+7. style.transition

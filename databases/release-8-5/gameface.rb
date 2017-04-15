@@ -70,8 +70,8 @@ module GameFace
     if correct
       puts "\u{1f647}  #{congratulate.sample} \u{1f647}".center(50)
       puts
-      puts "Your answer \"(#{letter[p_idx]}) #{choices[p_idx]}\" to ".center(50)
-      puts "\"#{question}\" is correct!".center(50)
+      puts "Your answer \"(#{letter[p_idx]}) #{choices[p_idx]}\" is correct to question ".center(50)
+      puts "\"#{question}\"".center(50)
       puts
       puts "Your current streak is: #{curr_streak}".center(50)
       puts
@@ -83,6 +83,8 @@ module GameFace
       puts "The correct answer to the question:".center(50)
       puts "\"#{question}\"".center(50)
       puts "is \"(#{letter[a_idx]}) #{choices[a_idx]}\"".center(50)
+      puts
+      puts "Streak : 0".center(50)
       game_footer
     end
   end
@@ -96,10 +98,10 @@ module GameFace
     game_footer
   end
 
-  def self.prompt_not_enough
+  def self.prompt_not_enough(curr_strk, best_strk)
     game_header("\u{1f64a}")
-    puts "You have answered 10 questions but no banana".center(50)
-    puts "Your current streak is less than your personal best".center(50)
+    puts "You have answered 10 questions, but no banana".center(50)
+    puts "Your current streak of #{curr_strk} is less than your personal best of #{best_strk}".center(50)
     puts "for this level and category".center(50)
     game_footer
   end
@@ -126,5 +128,15 @@ module GameFace
     puts "Would you like a new round?".center(50)
     puts
     puts "Type (y) for yes or (n) for No?"
+  end
+
+  def self.prompt_bye
+    game_header
+    puts "\u{1f35d}  Hasta pasta! \u{1f377}".center(50)
+    puts
+    puts "\u{00a9}2017 Joanna Joseph. All rights reserved.".center(50)
+    puts
+    puts "  Thanks for playing!".center(44, "  \u{1f31f} ")
+    puts
   end
 end

@@ -43,10 +43,9 @@ class PlayerData
     @player_info[0][key]
   end
 
-
   def game_paused? #CLEANUP ON THIS AISLE
-    puts paused = @db.execute("SELECT paused_game FROM players WHERE username=\"#{@username}\";")[0]["paused_game"]
-    puts paused.class
+    paused = @db.execute("SELECT paused_game FROM players WHERE username=\"#{@username}\";")[0]["paused_game"]
+    paused.class
     @user_id = @db.execute("SELECT id FROM players WHERE username=\"#{@username}\";")[0]["id"]
     paused == 1
   end

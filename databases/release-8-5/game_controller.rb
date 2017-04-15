@@ -38,8 +38,8 @@ class GameController
   end
 
   def get_game_preference
-      ask_category
-      ask_difficulty
+    ask_category
+    ask_difficulty
   end
 
   def get_game_info
@@ -97,6 +97,7 @@ class GameController
   end
 
   def start_game(qty=10)
+    @info_bank["paused_game"] = 0
     questions = Questions.new(@category, @difficulty)
     questions.generate(qty)
     qty.times do |n|
@@ -150,7 +151,7 @@ class GameController
       GameFace.prompt_fantastic(@streak, personal_best)
       @info_bank[key] = @streak
     else
-      GameFace.prompt_not_enough
+      GameFace.prompt_not_enough(@streak, personal_best)
     end
     ask_new_round
   end
@@ -159,8 +160,11 @@ class GameController
     GameFace.prompt_new_round
     continue = gets.chomp
     case continue.downcase
-    when "y" then start_game
-    when "n" then pause_game
+    when "y"
+      start_game
+      save_game
+    when "n"
+      @streak > 0 ? pause_game : save_game
     else
       ask_new_round
     end
@@ -174,7 +178,7 @@ class GameController
     end
     @stat = @player_data.get_stats
     @question_count += @stat[0][key]
-    @info_bank[key] = @quesiton_count
+    @info_bank[key] = @question_count
   end
 
   def tally_answers
@@ -183,7 +187,7 @@ class GameController
     when 18 then "computer_correct"
     when 23 then "history_correct"
     end
-    @question_count += @stat[0][key]
+    @correct_count += @stat[0][key]
     @info_bank[key] = @correct_count
   end
 
@@ -194,8 +198,14 @@ class GameController
 
   def save_game
     @player_data.save(@category, @difficulty, @streak)
-    key = tally_questions
+    tally_questions
     tally_answers
+    puts @info_bank
     @player_data.update_stats(@info_bank)
+    exit_game
+  end
+
+  def exit_game
+    GameFace.prompt_bye
   end
 end

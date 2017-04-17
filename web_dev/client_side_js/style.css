@@ -1,0 +1,12 @@
+html {
+  font-family: 'Unlock', serif;
+}
+
+.cover {
+  width: 520px;
+}
+
+.gifs {
+  height: 120px;
+  opacity: 0;
+}

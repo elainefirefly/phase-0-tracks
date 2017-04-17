@@ -1,0 +1,112 @@
+html {
+  background-image: url("images/backdrop.png");
+}
+
+body {
+  margin: 50px 7%;
+  font-family: sans-serif;
+  background-color: rgba(250,250,250,0.8);
+  color: #403e3f;
+  padding-left: 3%;
+  border-radius: 20px;
+  border: 0.5px solid rgba(179,179,179,0.5);
+}
+
+h1 {
+  max-width: 800px;
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 4em;
+  margin: 0px;
+  padding-top: 3%;
+  padding-left: 3%;
+}
+
+h2 {
+  font-size: 1.5em;
+  padding-left: 3%
+}
+
+h3 {
+  font-size: 1.2em;
+  padding-left: 3%
+}
+
+p {
+  display: block;
+  margin: 3%;
+  padding: 5px;
+  font-family: 'Averia Sans Libre', cursive;
+  font-size: 18px;
+}
+
+a {
+  font-family: 'Love Ya Like A Sister', cursive;
+  font-size: 20px;
+  margin: 30px;
+  color: #3d3d5c;
+}
+
+a:visited {
+  color: #8585ad;
+}
+
+a:hover {
+  font-size: 25px;
+}
+
+fieldset {
+  position: relative;
+  width: 60px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+}
+
+.special {
+    font-family: 'Love Ya Like A Sister', cursive;
+}
+
+#shuriken2 {
+  position: absolute;
+  top: 60px;
+  right: 60px;
+  width: 380px;
+  padding: 10px;
+}
+
+#shuriken3 {
+  float: right;
+  width: 300px;
+}
+
+@media screen and (max-width: 1035px) {
+  #shuriken2 {
+    position: absolute;
+    top: 140px;
+    right: 60px;
+    width: 230px;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  #shuriken2 {
+    position: absolute;
+    top: 120px;
+    right: 60px;
+    width: 230px;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 497px) {
+  #shuriken2 {
+    opacity: 0;
+  }
+}

@@ -1,4 +1,4 @@
-h1 {
+html {
   font-family: 'Unlock', serif;
 }
 
@@ -7,5 +7,6 @@ h1 {
 }
 
 .gifs {
-  width: 300px;
+  height: 120px;
+  opacity: 0;
 }
